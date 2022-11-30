@@ -1,2 +1,4 @@
 /.idea
-/debugg
+/debug
+/data/*
+!/data/*.py
