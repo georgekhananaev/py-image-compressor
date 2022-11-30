@@ -4,17 +4,18 @@ import os
 import gc
 
 support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp"]
-
-all_files = glob.glob("../data/*")
+original_folder = "../data/*"
+desired_format = "webp"
 
 
 def get_all_supported_files(path):
-    glob.glob(path)
+    all_files = glob.glob(path)
     temporary_memory = []
     for file in all_files:
         file_location, file_extension = os.path.splitext(file)
         if file_extension.lower() in support_formats:
-            temporary_memory.append(file)
+            temporary_memory.append(os.path.splitext(file))
+    del all_files  # removing this array from memory
     return temporary_memory
 
 
@@ -34,16 +35,16 @@ def compress_resize_image(file_location, output_location, file_type, max_width=8
         print(Err)
 
 
-all_supported_files = get_all_supported_files("../data/*")
+# passing the function into memory for continuous usage
+all_supported_files = get_all_supported_files(original_folder)
 
-# cleaning memory after passing the function into a list
-del all_files
-
-compress_resize_image(all_supported_files[0], "output.WEBP", "WEBP", quality=80)
-
-# releasing all memory
-gc.collect()
-
+if __name__ == '__main__':
+    for i in all_supported_files:
+        filedir_with_extension = i[0] + i[1]  # this is file location and file extension
+        out_filedir_with_extension = i[0] + f".{desired_format}"
+        compress_resize_image(filedir_with_extension, out_filedir_with_extension, desired_format, quality=80)
+    # releasing all memory
+    gc.collect()
 
 # # progress bar example
 # for i in tqdm(range(10)):
