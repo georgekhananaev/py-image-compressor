@@ -29,11 +29,9 @@ def compress_resize_image(file_location, output_location, file_type, max_width=8
 
 if __name__ == '__main__':
     for i in all_supported_files:
-        # filedir_with_extension = i[0] + i[1]  # this is file location and file extension
-        # out_filedir_with_extension = i[0] + f".{desired_format}"
-        print(i)
-        # compress_resize_image(filedir_with_extension, out_filedir_with_extension, desired_format, quality=80)
-    # releasing all memory
+        filedir_with_extension = i[0] + i[1]  # this is file location and file extension
+        out_filedir_with_extension = i[0] + f".{desired_format}"
+        compress_resize_image(filedir_with_extension, out_filedir_with_extension, desired_format, quality=80)
     gc.collect()
 
 # # progress bar example
