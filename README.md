@@ -1,6 +1,7 @@
 # Python Bulk Image Compressor + Resizer
 
 ### Main Goals:
+
 - 100% opensource project.
 - Visual gui interface.
 - Utilize all cores.
@@ -13,9 +14,10 @@
 - Edit automatically the new image patch in text based files such as (js, ts, jsx and more...)
 
 ### Optional:
+
 - Allow quick integrations (Optional)
 - Allow quick set of commands from terminal (Optional)
 
-
 ### ---- UNDER DEVELOPMENT, CHECK AGAIN LATER! ----
+
 **Discussion is opened. Leave your suggestions. Will be considered seriously!**

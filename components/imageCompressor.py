@@ -1,8 +1,5 @@
-from components import localColors as Color
-from PIL import Image
 import gc
-import os
-
+from PIL import Image
 
 # compressing and resizing files based on required parameters
 def compress_resize_image(file_location, output_location, file_type, max_width=800, optimize=True, quality=80):
@@ -19,7 +16,3 @@ def compress_resize_image(file_location, output_location, file_type, max_width=8
     except Exception as Err:
         gc.collect()
         print(Err)
-
-# # progress bar example
-# for i in tqdm(range(10)):
-#     sleep(3)

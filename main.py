@@ -1,51 +1,70 @@
+from pathlib import Path
 from tqdm import tqdm
-
 from components import imageCompressor as iC, localColors as Color
+import os
 
 support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp"]
-original_folder = "D:\Programming\React\\resume-website\\src"  # noqa
-output_folder = "./data/out/"  # noqa
 desired_format = "webp"
 all_supported_files = []
 
 
+# building database of list of supported images
 def build_file_list(your_folder, your_list):
-    for root, dirs, files in iC.os.walk(your_folder):
-        [your_list.append(iC.os.path.join(root, file_bfl)) for file_bfl in files if
-         iC.os.path.splitext(file_bfl)[1].lower() in support_formats]
+    for root, dirs, files in os.walk(your_folder):
+        [your_list.append(os.path.join(root, file_bfl)) for file_bfl in files if
+         os.path.splitext(file_bfl)[1].lower() in support_formats]
 
 
+# create folder if it doesn't exist
 def create_folder(your_path):
-    if iC.os.path.exists(your_path) is False:
-        iC.os.makedirs(your_path)
+    if os.path.exists(your_path) is False:
+        os.makedirs(your_path)
 
 
-if __name__ == '__main__':
+# return folder size value as string
+def folder_size(your_folder):
+    return f"{Color.select.OKGREEN}Total folder size is:{Color.select.ENDC} {Color.select.WARNING}{sum(file.stat().st_size for file in Path(your_folder).rglob('*')) / 1024}.KB{Color.select.ENDC}"
+
+
+# starting the loop single threaded
+def start_command(original_folder, output_folder="./out/", max_width=400, quality=100):
+    os.system('cls')
+
     # building a file list to memory.
     build_file_list(original_folder, all_supported_files)
 
+    # process bar handler
     pbar = tqdm(all_supported_files)
-    # looping supported file list creating missing folders and converting it.
-    zero = 0
-    for file in pbar:
-        iC.os.system('cls')
 
+    # looping supported file list creating missing folders and converting it.
+    zero = 0  # zero value for a counter for files.
+
+    # print(f"{Color.select.OKCYAN}Processing file: {os.path.basename(after)}{Color.select.ENDC}")
+
+    for file in pbar:
         filedir_with_extension = file
         before, sep, after = file.partition(original_folder)
-        create_folder(output_folder + iC.os.path.dirname(after))
+        create_folder(output_folder + os.path.dirname(after))
 
         zero += 1
-        print(f"{Color.select.OKCYAN}Processing file: {iC.os.path.basename(after)}{Color.select.ENDC}")
 
         # final image path example output > /data/pic/my_pic.webp
-        final_file_path = output_folder + after.replace(iC.os.path.splitext(after)[1], '') + f".{desired_format}"
-        pbar.set_description(f"{Color.select.OKBLUE}Image {zero} out of {len(all_supported_files)}{Color.select.ENDC} ")
+        final_file_path = output_folder + after.replace(os.path.splitext(after)[1], '') + f".{desired_format}"
+        pbar.set_description(
+            f"{Color.select.OKBLUE}Image {zero} out of {len(all_supported_files)}{Color.select.ENDC} ")
 
         iC.compress_resize_image(filedir_with_extension,
                                  final_file_path, desired_format,
-                                 max_width=400, quality=100)
-    # once finished throw memory.
-    iC.gc.collect()
-    exit()
+                                 max_width=max_width, quality=quality)
+    print(f"{Color.select.OKCYAN}Images saved to: {output_folder}{Color.select.ENDC}")
+    print(folder_size(output_folder))
 
-    # for i in tqdm(range(len(all_supported_files))):
+
+if __name__ == '__main__':
+    start_command("D:\Programming\React\\resume-website\\", "./data/out/", max_width=400, quality=90)  # noqa
+
+    # throw memory after loop. for test purposes.
+    iC.gc.collect()
+
+    # once finished throw memory.
+    exit()

@@ -1,8 +1,7 @@
 # importing the shutil module
-import shutil
-
 # importing the os module
 import os
+import shutil
 
 
 # defining the function to ignore the files
