@@ -31,7 +31,6 @@ Image 203 out of 203 : 100%|█████████████████�
 Images saved to: ./data/out/
 Total folder size is: 4329.529296875.KB
 ```
-g
 
 ## ---- UNDER DEVELOPMENT ----
 
