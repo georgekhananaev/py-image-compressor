@@ -11,7 +11,9 @@
 
 ### Command line usage:
 
-`python main.py -l <Your Location> -d <Your Destination> -f <File Format> -w <Max Width> -q <Max Quality>`
+```
+python main.py -l <Your Location> -d <Your Destination> -f <File Format> -w <Max Width> -q <Max Quality>
+```
 
 Options: 
 * -l = location
@@ -24,7 +26,9 @@ Options:
 
 COMMAND:
 
-`python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -f webp -w 500 -q 100`
+```
+python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -f webp -w 500 -q 100
+```
 
 OUTPUT:
 ```
