@@ -1,4 +1,4 @@
-# Python Bulk Image Compressor
+# Python Bulk Image Compressor + Resizer
 
 ### Main Goals:
 - 100% opensource project.

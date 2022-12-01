@@ -11,10 +11,10 @@ def compress_resize_image(file_location, output_location, file_type, max_width=8
             im = im.convert('RGB')
             new_width = im.height / max_width
             w, h = int(im.width // new_width), int(im.height // new_width)
-            print(f"{Color.select.OKCYAN}Processing file: {os.path.basename(file_location)}{Color.select.ENDC}, {Color.select.OKBLUE}it will be resized to: {w, h}{Color.select.ENDC}")
+            # print(f"{Color.select.OKCYAN}Processing file: {os.path.basename(file_location)}{Color.select.ENDC}, {Color.select.OKBLUE}it will be resized to: {w, h}{Color.select.ENDC}")
             im_resized = im.resize((w, h))
             im_resized.save(output_location, file_type, optimize=optimize, quality=quality)
-            print(f"{Color.select.OKGREEN}Done!{Color.select.ENDC}")
+            # print(f"{Color.select.OKGREEN}Done!{Color.select.ENDC}")
 
     except Exception as Err:
         gc.collect()
