@@ -18,7 +18,7 @@ Options:
 * -d = destination (required) 
 * -w = max width (default=original) 
 * -q = quality (default=100%)
-* -f = format (default=webp) supported formats: jpeg, png, gif, tiff and more. [Check PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html)
+* -f = format (default=webp) supported formats: jpeg, png, gif, tiff and more [Check PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html).
 
 **Example:**
 
