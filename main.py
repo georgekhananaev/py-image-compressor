@@ -27,7 +27,7 @@ def folder_size(your_folder):
 
 
 # starting the loop single threaded
-def start_command(original_folder, output_folder="./out/", max_width=400, quality=100):
+def start_command(original_folder, output_folder="./out/", max_width=800, quality=100):
     os.system('cls')
 
     # building a file list to memory.
@@ -38,8 +38,6 @@ def start_command(original_folder, output_folder="./out/", max_width=400, qualit
 
     # looping supported file list creating missing folders and converting it.
     zero = 0  # zero value for a counter for files.
-
-    # print(f"{Color.select.OKCYAN}Processing file: {os.path.basename(after)}{Color.select.ENDC}")
 
     for file in pbar:
         filedir_with_extension = file
@@ -61,7 +59,7 @@ def start_command(original_folder, output_folder="./out/", max_width=400, qualit
 
 
 if __name__ == '__main__':
-    start_command("D:\Programming\React\\resume-website\\", "./data/out/", max_width=400, quality=90)  # noqa
+    start_command("D:\Programming\React\\resume-website\\", "./data/out/", max_width=300, quality=90)  # noqa
 
     # throw memory after loop. for test purposes.
     iC.gc.collect()
