@@ -21,6 +21,8 @@ Options:
 
 **Example:**
 
+COMMAND:
+
 `python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -w 500 -q 100`
 
 OUTPUT:
