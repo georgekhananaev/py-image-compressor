@@ -27,7 +27,7 @@ def folder_size(your_folder):
 
 
 # starting the loop single threaded
-def start_command(original_folder, output_folder="./out/", dformat="webp", max_width=800, quality=100):
+def start_command(original_folder, output_folder: str, dformat: str, max_width: int, quality: int):
     os.system('cls')
 
     # building a file list to memory.
@@ -68,7 +68,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     start_command(args.l, args.d, dformat=args.f, max_width=args.w, quality=args.q)  # noqa
-    # start_command("D:\Programming\React\\resume-website\\", "./data/out/", max_width=300, quality=90)  # noqa
+    # terminal: python3 main.py -l "D:/Programming/React/resume-website/", -d "./data/out/", -f webp,  -w 300, -q 90
 
     # throw memory after loop. for test purposes.
     iC.gc.collect()

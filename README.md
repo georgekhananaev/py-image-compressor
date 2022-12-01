@@ -20,7 +20,7 @@ Options:
 * -d = destination
 * -w = max width
 * -q = quality 
-* -f = format (supported formats: jpeg, png, gif, tiff) for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html).
+* -f = format (supported formats: webp, jpeg, png, gif, tiff) for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html).
 
 **Example:**
 

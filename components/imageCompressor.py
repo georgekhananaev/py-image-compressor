@@ -3,7 +3,7 @@ from PIL import Image
 
 
 # compressing and resizing files based on required parameters
-def compress_resize_image(file_location, output_location, file_type, max_width=None, optimize=True, quality=80):
+def compress_resize_image(file_location, output_location, file_type, max_width: int, optimize=True, quality=100):
     try:
         with Image.open(file_location) as im:
             im = im.convert('RGB')
