@@ -1,23 +1,27 @@
+![Version](https://img.shields.io/badge/Python%203+-Supported-brightgreen)
+
 # Python Bulk Image Compressor + Resizer
+![alt text](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshot.jpg?raw=true)
 
-### Main Goals:
 
-- 100% opensource project.
-- Visual gui interface.
-- Utilize all cores.
-- Lightweight multi-threaded ultra fast.
-- Compress and replace images inside a directory and subdirectories.
-- Convert old formats into modern formats such as .WEBP and more...??
-- Set maximum width / height.
-- Backup of original files locally.
-- Backup of original files into Google Drive (optional).
-- Edit automatically the new image patch in text based files such as (js, ts, jsx and more...)
+### Command line usage:
+`python main.py -l <Your Location> -d <Your Destination> -w <Max Width> -q <Max Quality>`
 
-### Optional:
+Options: 
+* -l = location (required) 
+* -d = destination (required) 
+* -w = max width (default=original) 
+* -q = quality (default=100%)
 
-- Allow quick integrations (Optional)
-- Allow quick set of commands from terminal (Optional)
+Example:
 
-### ---- UNDER DEVELOPMENT, CHECK AGAIN LATER! ----
+`python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -w 500 -q 100`
 
-**Discussion is opened. Leave your suggestions. Will be considered seriously!**
+
+## ---- UNDER DEVELOPMENT ----
+
+Discussion is opened. Leave your suggestions. Will be considered seriously!
+
+
+#### GUI interface, will be added soon...
+

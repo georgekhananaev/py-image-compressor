@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 from tqdm import tqdm
 from components import imageCompressor as iC, localColors as Color
@@ -59,7 +60,15 @@ def start_command(original_folder, output_folder="./out/", max_width=800, qualit
 
 
 if __name__ == '__main__':
-    start_command("D:\Programming\React\\resume-website\\", "./data/out/", max_width=300, quality=90)  # noqa
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l', type=str, required=True)
+    parser.add_argument('-d', type=str, required=True)
+    parser.add_argument('-w', type=int)
+    parser.add_argument('-q', type=int)
+    args = parser.parse_args()
+
+    start_command(args.l, args.d, max_width=args.w, quality=args.q)  # noqa
+    # start_command("D:\Programming\React\\resume-website\\", "./data/out/", max_width=300, quality=90)  # noqa
 
     # throw memory after loop. for test purposes.
     iC.gc.collect()
