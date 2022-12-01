@@ -11,20 +11,20 @@
 
 ### Command line usage:
 
-`python main.py -l <Your Location> -d <Your Destination> -w <Max Width> -q <Max Quality>`
+`python main.py -l <Your Location> -d <Your Destination> -f <File Format> -w <Max Width> -q <Max Quality>`
 
 Options: 
-* -l = location (required) 
-* -d = destination (required) 
-* -w = max width (default=original) 
-* -q = quality (default=100%)
-* -f = format (default=webp) supported formats: jpeg, png, gif, tiff and more [Check PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html).
+* -l = location
+* -d = destination
+* -w = max width
+* -q = quality 
+* -f = format (supported formats: jpeg, png, gif, tiff) for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html).
 
 **Example:**
 
 COMMAND:
 
-`python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -w 500 -q 100`
+`python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -f webp -w 500 -q 100`
 
 OUTPUT:
 ```

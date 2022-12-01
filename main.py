@@ -62,9 +62,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True)
     parser.add_argument('-d', type=str, required=True)
-    parser.add_argument('-f', type=str)
-    parser.add_argument('-w', type=int)
-    parser.add_argument('-q', type=int)
+    parser.add_argument('-f', type=str, required=True)
+    parser.add_argument('-w', type=int, required=True)
+    parser.add_argument('-q', type=int, required=True)
     args = parser.parse_args()
 
     start_command(args.l, args.d, dformat=args.f, max_width=args.w, quality=args.q)  # noqa
