@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
     time_end = time.time()
 
-    print(f"Finished in: {round(time_end - time_start, 2)} Seconds ({round(time_end - time_start)})")
+    print(f"Finished in: {round(time_end - time_start, 2)} Seconds")
     # throw memory for test purposes.
     iC.gc.collect()
 
