@@ -1,10 +1,10 @@
-![Version](https://img.shields.io/badge/Python%203+-Supported-brightgreen)
-
 # Python Bulk Image Compressor + Resizer
 ![alt text](https://github.com/georgekhananaev/py-image-compressor/blob/main/animation.gif?raw=true)
 
 
 ### Basics
+[![Generic badge](https://img.shields.io/badge/Python_3.11-Supported-green.svg)](https://shields.io/)
+
 1. Install [Python 3+](https://www.python.org/downloads/) (Python 3.11 is supported)
 2. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/)
 
