@@ -1,13 +1,16 @@
-import argparse
+from components import imageCompressor as iC, localColors as Color
 from pathlib import Path
 from tqdm import tqdm
-from components import imageCompressor as iC, localColors as Color
+import argparse
 import os
 import time
 
+
+# supported source formats, you can add more formats if supported by PIL here.
 support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp"]
 
 
+# building file list structure with generator
 def build_file_list(your_folder):
     for root, dirs, files in os.walk(your_folder):
         for file_bfl in files:
@@ -15,6 +18,7 @@ def build_file_list(your_folder):
                 yield os.path.join(root, file_bfl)
 
 
+# creating folder if not exist
 def create_folder(your_path):
     if os.path.exists(your_path) is False:
         os.makedirs(your_path)
@@ -28,9 +32,6 @@ def folder_size(your_folder):
 # starting the loop single threaded
 def start_command(original_folder, output_folder: str, dformat: str, max_width: int, quality: int):
     os.system('cls')
-
-    # building a file list to memory.
-    # build_file_list(original_folder)
 
     # process bar handler
     pbar = tqdm([file for file in build_file_list(original_folder)])

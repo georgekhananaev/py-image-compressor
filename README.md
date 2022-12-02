@@ -5,7 +5,7 @@
 
 
 ### Basics
-1. Install [Python 3+](https://www.python.org/downloads/)
+1. Install [Python 3+](https://www.python.org/downloads/) (Python 3.11 is supported)
 2. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/)
 
 
