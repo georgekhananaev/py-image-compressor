@@ -3,7 +3,7 @@
 
 
 ### Basics
-[![Generic badge](https://img.shields.io/badge/Python_3.11-Supported-green.svg)](https://shields.io/)
+![Generic badge](https://img.shields.io/badge/Python_3.11-Supported-green.svg)
 
 1. Install [Python 3+](https://www.python.org/downloads/) (Python 3.11 is supported)
 2. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/)
