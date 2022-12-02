@@ -70,8 +70,8 @@ if __name__ == '__main__':
     start_command(args.l, args.d, dformat=args.f, max_width=args.w, quality=args.q)  # noqa
     # terminal: python3 main.py -l "D:/Programming/React/resume-website/", -d "./data/out/", -f webp,  -w 300, -q 90
 
-    # throw memory after loop. for test purposes.
+    # throw memory for test purposes.
     iC.gc.collect()
 
-    # once finished throw memory.
+    # once finished exit app.
     exit()

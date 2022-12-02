@@ -1,7 +1,7 @@
 ![Version](https://img.shields.io/badge/Python%203+-Supported-brightgreen)
 
 # Python Bulk Image Compressor + Resizer
-![alt text](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshot.jpg?raw=true)
+![alt text](https://github.com/georgekhananaev/py-image-compressor/blob/main/animation.gif?raw=true)
 
 
 ### Basics
@@ -31,11 +31,8 @@ python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -f webp -w
 ```
 
 OUTPUT:
-```
-Image 203 out of 203 : 100%|██████████████████████████████████| 203/203 [00:05<00:00, 36.69it/s]
-Images saved to: ./data/out/
-Total folder size is: 4329.529296875.KB
-```
+![alt text](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshot.jpg?raw=true)
+
 
 ## ---- UNDER DEVELOPMENT ----
 
