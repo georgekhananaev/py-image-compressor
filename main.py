@@ -3,19 +3,18 @@ from pathlib import Path
 from tqdm import tqdm
 from components import imageCompressor as iC, localColors as Color
 import os
+import time
 
 support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp"]
-all_supported_files = []
 
 
-# building database of list of supported images
-def build_file_list(your_folder, your_list):
+def build_file_list(your_folder):
     for root, dirs, files in os.walk(your_folder):
-        [your_list.append(os.path.join(root, file_bfl)) for file_bfl in files if
-         os.path.splitext(file_bfl)[1].lower() in support_formats]
+        for file_bfl in files:
+            if os.path.splitext(file_bfl)[1].lower() in support_formats:
+                yield os.path.join(root, file_bfl)
 
 
-# create folder if it doesn't exist
 def create_folder(your_path):
     if os.path.exists(your_path) is False:
         os.makedirs(your_path)
@@ -31,10 +30,10 @@ def start_command(original_folder, output_folder: str, dformat: str, max_width: 
     os.system('cls')
 
     # building a file list to memory.
-    build_file_list(original_folder, all_supported_files)
+    # build_file_list(original_folder)
 
     # process bar handler
-    pbar = tqdm(all_supported_files)
+    pbar = tqdm([file for file in build_file_list(original_folder)])
 
     # looping supported file list creating missing folders and converting it.
     zero = 0  # zero value for a counter for files.
@@ -49,7 +48,7 @@ def start_command(original_folder, output_folder: str, dformat: str, max_width: 
         # final image path example output > /data/pic/my_pic.webp
         final_file_path = output_folder + after.replace(os.path.splitext(after)[1], '') + f".{dformat}"
         pbar.set_description(
-            f"{Color.select.OKBLUE}Image {zero} out of {len(all_supported_files)}{Color.select.ENDC} ")
+            f"{Color.select.OKBLUE}Image {zero} out of {len(pbar)}{Color.select.ENDC} ")
 
         iC.compress_resize_image(filedir_with_extension,
                                  final_file_path, dformat,
@@ -59,6 +58,7 @@ def start_command(original_folder, output_folder: str, dformat: str, max_width: 
 
 
 if __name__ == '__main__':
+    time_start = time.time()
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True)
     parser.add_argument('-d', type=str, required=True)
@@ -70,6 +70,9 @@ if __name__ == '__main__':
     start_command(args.l, args.d, dformat=args.f, max_width=args.w, quality=args.q)  # noqa
     # terminal: python3 main.py -l "D:/Programming/React/resume-website/", -d "./data/out/", -f webp,  -w 300, -q 90
 
+    time_end = time.time()
+
+    print(f"Finished in: {round(time_end - time_start, 2)} Seconds ({round(time_end - time_start)})")
     # throw memory for test purposes.
     iC.gc.collect()
 
