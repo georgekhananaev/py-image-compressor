@@ -36,10 +36,12 @@ OUTPUT:
 ## Updates:.
 
 04/12/2022
+
+
 > 1. Added multicore image processing, now this is nearly 10 times faster.
+> ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 > 2. Better output for each image, you can see how much size you actually saved.
 > 3. Started working on the GUI interface, will be executable at least on Windows/Ubuntu.
-![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 
 
 ## ---- UNDER DEVELOPMENT ----
