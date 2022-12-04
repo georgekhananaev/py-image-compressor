@@ -1,65 +1,15 @@
-from components import imageCompressor as iC, localColors as Color
-from pathlib import Path
-from tqdm import tqdm
+from components import imageCompressor as iC, mainFunctions as mF, localColors as Color
+import concurrent.futures
 import argparse
-import os
 import time
+import os
 
-
-# supported source formats, you can add more formats if supported by PIL here.
-support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp"]
-
-
-# building file list structure with generator
-def build_file_list(your_folder):
-    for root, dirs, files in os.walk(your_folder):
-        for file_bfl in files:
-            if os.path.splitext(file_bfl)[1].lower() in support_formats:
-                yield os.path.join(root, file_bfl)
-
-
-# creating folder if not exist
-def create_folder(your_path):
-    if os.path.exists(your_path) is False:
-        os.makedirs(your_path)
-
-
-# return folder size value as string
-def folder_size(your_folder):
-    return f"{Color.select.OKGREEN}Total folder size is:{Color.select.ENDC} {Color.select.WARNING}{sum(file.stat().st_size for file in Path(your_folder).rglob('*')) / 1024}.KB{Color.select.ENDC}"
-
-
-# starting the loop single threaded
-def start_command(original_folder, output_folder: str, dformat: str, max_width: int, quality: int):
-    os.system('cls')
-
-    # process bar handler
-    pbar = tqdm([file for file in build_file_list(original_folder)])
-
-    # looping supported file list creating missing folders and converting it.
-    zero = 0  # zero value for a counter for files.
-
-    for file in pbar:
-        filedir_with_extension = file
-        before, sep, after = file.partition(original_folder)
-        create_folder(output_folder + os.path.dirname(after))
-
-        zero += 1
-
-        # final image path example output > /data/pic/my_pic.webp
-        final_file_path = output_folder + after.replace(os.path.splitext(after)[1], '') + f".{dformat}"
-        pbar.set_description(
-            f"{Color.select.OKBLUE}Image {zero} out of {len(pbar)}{Color.select.ENDC} ")
-
-        iC.compress_resize_image(filedir_with_extension,
-                                 final_file_path, dformat,
-                                 max_width=max_width, quality=quality)
-    print(f"{Color.select.OKCYAN}Images saved to: {output_folder}{Color.select.ENDC}")
-    print(folder_size(output_folder))
-
+# measuring number of cores in your machine. Will utilize all of them. you can set cores manually such as n_cores = 4
+n_cores = os.cpu_count()
 
 if __name__ == '__main__':
-    time_start = time.time()
+
+    # passing commands to out to command line
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True)
     parser.add_argument('-d', type=str, required=True)
@@ -68,14 +18,57 @@ if __name__ == '__main__':
     parser.add_argument('-q', type=int, required=True)
     args = parser.parse_args()
 
-    start_command(args.l, args.d, dformat=args.f, max_width=args.w, quality=args.q)  # noqa
-    # terminal: python3 main.py -l "D:/Programming/React/resume-website/", -d "./data/out/", -f webp,  -w 300, -q 90
+    # begging of time measure
+    time_start = time.time()
 
-    time_end = time.time()
+    # building list of files from generator function
+    image_list = [file for file in mF.build_file_list(args.l)]
 
-    print(f"Finished in: {round(time_end - time_start, 2)} Seconds")
-    # throw memory for test purposes.
+    # starting multicore loop with editing output
+    with concurrent.futures.ProcessPoolExecutor(max_workers=n_cores) as executor:
+        # Start the load operations and mark each future with its URL
+        future_to_image = {executor.submit(mF.start_command, image, args.l, args.d, dformat=args.f, max_width=args.w,
+                                           quality=args.q): image
+                           for image in image_list}
+
+        # returning output from pool
+        for future in concurrent.futures.as_completed(future_to_image):
+            image = future_to_image[future]
+            try:
+                data = future.result()
+            except Exception as exc:
+                print('%r generated an exception: %s' % (image, exc))
+            else:
+                try:
+                    file = os.path.basename(image)
+                    dir = os.path.basename(image)
+                    before, sep, after = image.partition(args.l)
+                    new_img_location = os.path.splitext(args.d + after)[0] + f".{args.f}"
+
+                    # text for print
+                    image_size_is = f"Image {os.path.basename(image)} size is: {round(os.path.getsize(image) / 1024, 2)}KB, New size: {round(os.path.getsize(new_img_location) / 1024, 2)}KB"
+                    saved_size = f"Saved: {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))} %"
+                    if "Worst" in {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}:
+                        saved_size = f"{Color.select.FAIL}Not Saved!{Color.select.ENDC}"
+                    else:
+                        saved_size = f"{Color.select.OKBLUE}Saved {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))} %{Color.select.ENDC}"
+
+                    # progress print out
+                    print(image_size_is, saved_size)
+                except Exception as Err:
+                    print(Err)
+                    pass
+
+        # end of time measure
+        time_end = time.time()
+
+        # final print
+        print(f'{Color.select.BOLD}{Color.select.HEADER}Images saved to: {args.d}')
+        print(f'{mF.folder_size(args.d)}')
+        print(f"Totally edited: {len(image_list)} images, completed within: {round(time_end - time_start, 2)} seconds{Color.select.ENDC}")
+
+    # throwing memory for test purposes. probably ain't do shit.
     iC.gc.collect()
 
-    # once finished exit app.
+    # once finished exit.
     exit()
