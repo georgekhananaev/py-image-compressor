@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import gc
 from PIL import Image
 

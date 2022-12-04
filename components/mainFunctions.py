@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from components import imageCompressor as iC
 from pathlib import Path
 import os

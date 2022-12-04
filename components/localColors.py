@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # 👇️ simple colors
 class select:
     HEADER = '\033[95m'
