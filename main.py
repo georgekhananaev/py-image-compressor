@@ -9,14 +9,14 @@ n_cores = os.cpu_count()
 
 # 👇️ starting everything
 if __name__ == '__main__':
-
     # 👇️ passing commands to command line
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', type=str, required=True)
-    parser.add_argument('-d', type=str, required=True)
-    parser.add_argument('-f', type=str, required=True)
-    parser.add_argument('-w', type=int, required=True)
-    parser.add_argument('-q', type=int, required=True)
+    parser.add_argument('-l', type=str, required=True)  # images locations
+    parser.add_argument('-d', type=str, required=True)  # images destination
+    parser.add_argument('-f', type=str, required=True)  # images format
+    parser.add_argument('-w', type=int, required=True)  # images max width
+    parser.add_argument('-q', type=int, required=True)  # images quality
+    parser.add_argument('-r', type=str)  # remove larger files y/n
     args = parser.parse_args()
 
     # 👇️ begging of time measure
@@ -41,21 +41,32 @@ if __name__ == '__main__':
                 print('%r generated an exception: %s' % (image, exc))
             else:
                 try:
-                    file = os.path.basename(image)
-                    dir = os.path.basename(image)
-                    before, sep, after = image.partition(args.l)
-                    new_img_location = os.path.splitext(args.d + after)[0] + f".{args.f}"
+                    file = os.path.basename(image)  # original image file name
+                    before, sep, after = image.partition(args.l)  # remove location from image if you use after.
+                    new_img_location = os.path.splitext(args.d + after)[0] + f".{args.f}"  # new image full Path
 
                     # 👇️ text for print
                     image_size_is = f"Image {os.path.basename(image)} size is: {round(os.path.getsize(image) / 1024, 2)}KB, new size: {round(os.path.getsize(new_img_location) / 1024, 2)}KB"
                     saved_size = f"Saved: {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))} %"
                     if mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location)) < 0:
-                        saved_size = f"{Color.select.FAIL}, worst {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}%.{Color.select.ENDC}"
+                        saved_size = f"{Color.select.FAIL}, worst by {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}%{Color.select.ENDC}"
+                        # 👇️ will remove larger files if you selected yes.
+                        try:
+                            if args.r.lower() == "y":
+                                os.remove(new_img_location)
+                                print(
+                                    f"{Color.select.WARNING}The file below: {os.path.basename(new_img_location)} was removed is{Color.select.ENDC}{saved_size}")
+                            else:
+                                continue
+                        except Exception as Err:
+                            _ = Err
+                            pass
                     else:
                         saved_size = f"{Color.select.OKBLUE} saved {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}%{Color.select.ENDC}"
 
                     # 👇️ progress print out
                     print(f'{image_size_is}{saved_size}')
+
                 except Exception as Err:
                     print(Err)
                     pass
@@ -66,7 +77,8 @@ if __name__ == '__main__':
         # 👇️ final print
         print(f'{Color.select.BOLD}{Color.select.HEADER}Images saved to: {args.d}')
         print(f'{mF.folder_size(args.d)}')
-        print(f"Totally edited: {len(image_list)} images, completed within: {round(time_end - time_start, 2)} seconds{Color.select.ENDC}")
+        print(
+            f"Totally processed: {len(image_list)} images, completed within: {round(time_end - time_start, 2)} seconds{Color.select.ENDC}")
 
     # 👇️ throwing memory for test purposes. probably ain't do shit.
     iC.gc.collect()
