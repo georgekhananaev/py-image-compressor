@@ -1,5 +1,0 @@
-/.idea
-/debug
-/data/*
-!/data/*.py
-gui.py
