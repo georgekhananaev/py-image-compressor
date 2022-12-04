@@ -18,5 +18,6 @@ def compress_resize_image(file_location, output_location, file_type, max_width: 
             im_resized.save(output_location, file_type, optimize=optimize, quality=quality)
 
     except Exception as Err:
-        gc.collect()
         print(Err)
+        # del Err, file_location
+        # gc.collect()

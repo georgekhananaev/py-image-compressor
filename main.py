@@ -96,8 +96,5 @@ if __name__ == '__main__':
         print(
             f"Totally processed: {len(image_list)} images, completed within: {round(time_end - time_start, 2)} seconds{Color.select.ENDC}")
 
-    # 👇️ throwing memory for test purposes. probably ain't do shit.
-    iC.gc.collect()
-
     # 👇️ once finished exit.
     exit()
