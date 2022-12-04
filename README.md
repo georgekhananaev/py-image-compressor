@@ -1,5 +1,5 @@
 # Python Bulk Image Compressor + Resizer
-![alt text](https://github.com/georgekhananaev/py-image-compressor/blob/main/animation.gif?raw=true)
+![animation](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/animation.gif?raw=true)
 
 
 ### Basics
@@ -31,7 +31,7 @@ python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -f webp -w
 ```
 
 OUTPUT:
-![alt text](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshot.jpg?raw=true)
+![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/screenshot.jpg?raw=true)
 
 ## Updates:.
 
@@ -39,6 +39,8 @@ OUTPUT:
 > 1. Added multicore image processing, now this is nearly 10 times faster.
 > 2. Better output for each image, you can see how much size you actually saved.
 > 3. Started working on the GUI interface, will be executable at least on Windows/Ubuntu.
+![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
+
 
 ## ---- UNDER DEVELOPMENT ----
 
