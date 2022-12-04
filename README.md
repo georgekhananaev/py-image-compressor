@@ -33,11 +33,9 @@ python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -f webp -w
 OUTPUT:
 ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/screenshot.jpg?raw=true)
 
-## Updates:.
+## Updates:
 
-04/12/2022
-
-
+**04/12/2022**
 > 1. Added multicore image processing, now this is nearly 10 times faster.
 > ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 > 2. Better output for each image, you can see how much size you actually saved.

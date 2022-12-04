@@ -46,10 +46,10 @@ if __name__ == '__main__':
                     new_img_location = os.path.splitext(args.d + after)[0] + f".{args.f}"
 
                     # text for print
-                    image_size_is = f"Image {os.path.basename(image)} size is: {round(os.path.getsize(image) / 1024, 2)}KB, New size: {round(os.path.getsize(new_img_location) / 1024, 2)}KB"
+                    image_size_is = f"Image {os.path.basename(image)} size is: {round(os.path.getsize(image) / 1024, 2)}KB, new size: {round(os.path.getsize(new_img_location) / 1024, 2)}KB"
                     saved_size = f"Saved: {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))} %"
                     if "Worst" in {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}:
-                        saved_size = f"{Color.select.FAIL}Not Saved!{Color.select.ENDC}"
+                        saved_size = f"{Color.select.FAIL}, new file is larger.{Color.select.ENDC}"
                     else:
                         saved_size = f"{Color.select.OKBLUE}Saved {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))} %{Color.select.ENDC}"
 
