@@ -54,7 +54,7 @@ if __name__ == '__main__':
                         saved_size = f"{Color.select.OKBLUE}Saved {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))} %{Color.select.ENDC}"
 
                     # progress print out
-                    print(image_size_is, saved_size)
+                    print(f'{image_size_is}{saved_size}')
                 except Exception as Err:
                     print(Err)
                     pass
