@@ -72,11 +72,8 @@ if __name__ == '__main__':
                                 os.remove(new_img_location)
                                 print(
                                     f"{Color.select.WARNING}The file below: {os.path.basename(new_img_location)} was removed is{Color.select.ENDC}{saved_size}")
-                            else:
-                                continue
                         except Exception as Err:
                             _ = Err
-                            print('2')
                             pass
                     else:
                         saved_size = f"{Color.select.OKBLUE} saved {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}%{Color.select.ENDC}"
