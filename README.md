@@ -18,14 +18,14 @@ python main.py -l <Your Location> -d <Your Destination> -f <File Format> -w <Max
 
 Options: 
 
-| Command        | Meaning     | Details                                                                                                                                                                   | Usage example                |
-|----------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|
-| **-l**  (required) | location    | your images path                                                                                                                                                          | `-l "C:/Photos 11 Pro Max/"` |
-| **-d**  (required) | destination | destination path                                                                                                                                                          | `-d "C:/Compressed/"`        |
-| **-w**  (required) | max width   | if larger resolution <br/>will be set to max                                                                                                                              | `-w 1920`                    |
-| **-q** (required)  | quality     | images quality by percentage.<br/>lower quality to save more space                                                                                                        | `-q 80`                      |
-| **-f**  (required) | format      | format (supported formats: webp, jpeg, png, gif, tiff) <br/>for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). | `-f jpeg`                    |
-| **-r** (optional)  | remove      | remove images from destination path, <br/>if compression is worst than original file.                                                                                     | `-r y`                       |
+| Command        | Meaning     | Details                                                                                                                                                                   | Usage example              |
+|----------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| **-l**  (required) | location    | your images path                                                                                                                                                          | `-l "C:/Original Images/"` |
+| **-d**  (required) | destination | destination path                                                                                                                                                          | `-d "C:/Compressed Images/"`    |
+| **-w**  (required) | max width   | if larger resolution <br/>will be set to max                                                                                                                              | `-w 1920`                  |
+| **-q** (required)  | quality     | images quality by percentage.<br/>lower quality to save more space                                                                                                        | `-q 80`                    |
+| **-f**  (required) | format      | format (supported formats: webp, jpeg, png, gif, tiff) <br/>for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). | `-f jpeg`                  |
+| **-r** (optional)  | remove      | remove images from destination path, <br/>if compression is worst than original file.                                                                                     | `-r y`                     |
 
 _Import: for -l and -d, use quotation marks if have spaces._
 
