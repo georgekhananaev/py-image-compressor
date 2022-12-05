@@ -6,7 +6,9 @@
 ![Generic badge](https://img.shields.io/badge/Python_3.11-Supported-green.svg)
 
 1. Install [Python 3+](https://www.python.org/downloads/)
-2. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/)
+2. Install [git](https://github.com/georgekhananaev/py-image-compressor)
+3. Clone this repository: ```git clone https://github.com/georgekhananaev/py-image-compressor.git```
+4. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/), cd into main folder and type: ```pip install -r requirements.txt```
 
 
 ### Command line usage:
