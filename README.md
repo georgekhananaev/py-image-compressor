@@ -13,15 +13,15 @@
 ### Usage:
 
 
-| Command                 | Weight                    | Meaning                      | Details                                                                                                                                                                   | Usage example                |
-|-------------------------|---------------------------|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|
-| <center>**-l** | <center>required | <center>location    | your images path, where your original images located.                                                                                                                     | `-l "C:/Original Images/"`   |
-| <center>**-d** | <center>required | <center>destination | your destination path, compressed images will be saved here                                                                                                               | `-d "C:/Compressed Images/"` |
-| <center>**-w** | <center>required | <center>max width   | if larger resolution will be set to max width without breaking the image ratio                                                                                            | `-w 1920`                    |
-| <center>**-q** | <center>required | <center>quality     | images quality by percentage.<br/>lower quality to save more space                                                                                                        | `-q 80`                      |
-| <center>**-f** | <center>required | <center>format      | format (supported formats: webp, jpeg, png, gif, tiff) <br/>for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). | `-f jpeg`                    |
-| <center>**-r** | <center>optional | <center>remove      | remove images from destination path, <br/>if compression is worst than original file.                                                                                     | `-r y`                       |
-| <center>**-h** | <center>optional | <center>help        | if you forgot what command you want to use can write python main.py --help                                                                                                | `-h or --help`               |
+| Command |  Weight  |   Meaning   | Details                                                                                                                                                                   |        Usage example         |
+|:-------:|:--------:|:-----------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------:|
+| **-l**  | required |  location   | your images path, where your original images located.                                                                                                                     |  `-l "C:/Original Images/"`  |
+| **-d**  | required | destination | your destination path, compressed images will be saved here                                                                                                               | `-d "C:/Compressed Images/"` |
+| **-w**  | required |  max width  | if larger resolution will be set to max width without breaking the image ratio                                                                                            |          `-w 1920`           |
+| **-q**  | required |   quality   | images quality by percentage.<br/>lower quality to save more space                                                                                                        |           `-q 80`            |
+| **-f**  | required |   format    | format (supported formats: webp, jpeg, png, gif, tiff) <br/>for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). |          `-f jpeg`           |
+| **-r**  | optional |   remove    | remove images from destination path, <br/>if compression is worst than original file.                                                                                     |            `-r y`            |
+| **-h**  | optional |    help     | if you forgot what command you want to use can write python main.py --help                                                                                                |        `-h or --help`        |
 
 
 _Import: for -l and -d, use quotation marks if have spaces._
