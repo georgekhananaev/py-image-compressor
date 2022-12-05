@@ -28,12 +28,12 @@ if __name__ == '__main__':
 
     # 👇️ passing commands to command line
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', type=str, required=True)  # images locations
-    parser.add_argument('-d', type=str, required=True)  # images destination
-    parser.add_argument('-f', type=str, required=True)  # images format
-    parser.add_argument('-w', type=int, required=True)  # images max width
-    parser.add_argument('-q', type=int, required=True)  # images quality
-    parser.add_argument('-r', type=str)  # remove larger files y/n
+    parser.add_argument('-l', type=str, required=True, help='''set your location path example: -l "C:/original_images/"''')  # images locations
+    parser.add_argument('-d', type=str, required=True, help='''set your destination path -d "C:/new_images/"''')  # images destination
+    parser.add_argument('-f', type=str, required=True, help="format example: -f webp")  # images format
+    parser.add_argument('-w', type=int, required=True, help="max width, example: -w 1920")  # images max width
+    parser.add_argument('-q', type=int, required=True, help="quality, example: -q 90")  # images quality
+    parser.add_argument('-r', type=str, help="this is optional, if you want to remove worst compressions compared to original usage: -r y")  # remove larger files y/n
     args = parser.parse_args()
 
     # 👇️ begging of time measure
