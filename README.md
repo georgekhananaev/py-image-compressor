@@ -10,26 +10,26 @@
 3. Clone this repository: ```git clone https://github.com/georgekhananaev/py-image-compressor.git```
 4. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/), cd into main folder and type: ```pip install -r requirements.txt```
 
-### Command line usage:
+### Usage:
+
+
+| Command | Weight   | Meaning     | Details                                                                                                                                                                   | Usage example                |
+|---------|----------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|
+| **-l**  | required | location    | your images path                                                                                                                                                          | `-l "C:/Original Images/"`   |
+| **-d**  | required | destination | destination path                                                                                                                                                          | `-d "C:/Compressed Images/"` |
+| **-w**  | required | max width   | if larger resolution <br/>will be set to max                                                                                                                              | `-w 1920`                    |
+| **-q**  | required | quality     | images quality by percentage.<br/>lower quality to save more space                                                                                                        | `-q 80`                      |
+| **-f**  | required | format      | format (supported formats: webp, jpeg, png, gif, tiff) <br/>for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). | `-f jpeg`                    |
+| **-r**  | optional | remove      | remove images from destination path, <br/>if compression is worst than original file.                                                                                     | `-r y`                       |
+
+_Import: for -l and -d, use quotation marks if have spaces._
+
+**Examples:**
 
 ```
 python main.py -l <Your Location> -d <Your Destination> -f <File Format> -w <Max Width> -q <Max Quality> -r <Remove Larger Files>
 ```
 
-Options: 
-
-| Command        | Meaning     | Details                                                                                                                                                                   | Usage example              |
-|----------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| **-l**  (required) | location    | your images path                                                                                                                                                          | `-l "C:/Original Images/"` |
-| **-d**  (required) | destination | destination path                                                                                                                                                          | `-d "C:/Compressed Images/"`    |
-| **-w**  (required) | max width   | if larger resolution <br/>will be set to max                                                                                                                              | `-w 1920`                  |
-| **-q** (required)  | quality     | images quality by percentage.<br/>lower quality to save more space                                                                                                        | `-q 80`                    |
-| **-f**  (required) | format      | format (supported formats: webp, jpeg, png, gif, tiff) <br/>for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). | `-f jpeg`                  |
-| **-r** (optional)  | remove      | remove images from destination path, <br/>if compression is worst than original file.                                                                                     | `-r y`                     |
-
-_Import: for -l and -d, use quotation marks if have spaces._
-
-**Example:**
 
 COMMAND:
 
