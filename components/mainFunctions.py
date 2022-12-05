@@ -4,7 +4,7 @@ from pathlib import Path
 import os
 
 # 👇️ supported source formats, you can add more formats if supported by PIL here.
-support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp"]
+support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp", ".heic", ".heif"]
 
 
 # 👇️ building file list structure with generator

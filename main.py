@@ -14,7 +14,7 @@
 #
 # github: https://github.com/georgekhananaev/py-image-compressor
 
-from components import imageCompressor as iC, mainFunctions as mF, localColors as Color
+from components import mainFunctions as mF, localColors as Color
 import concurrent.futures
 import argparse
 import time
@@ -25,6 +25,7 @@ n_cores = os.cpu_count()
 
 # 👇️ starting everything
 if __name__ == '__main__':
+
     # 👇️ passing commands to command line
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True)  # images locations
@@ -44,12 +45,11 @@ if __name__ == '__main__':
     # 👇️ starting multicore image processing loop
     with concurrent.futures.ProcessPoolExecutor(max_workers=n_cores) as executor:
         # Start the load operations and mark each future with its URL
-        future_to_image = {executor.submit(mF.start_command, image, args.l, args.d, dformat=args.f, max_width=args.w,
-                                           quality=args.q): image
-                           for image in image_list}
+        future_to_image = {executor.submit(mF.start_command, image, args.l, args.d, dformat=args.f, max_width=args.w, quality=args.q): image for image in image_list}
 
         # 👇️ returning output from pool
         for future in concurrent.futures.as_completed(future_to_image):
+
             image = future_to_image[future]
             try:
                 data = future.result()
@@ -76,6 +76,7 @@ if __name__ == '__main__':
                                 continue
                         except Exception as Err:
                             _ = Err
+                            print('2')
                             pass
                     else:
                         saved_size = f"{Color.select.OKBLUE} saved {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}%{Color.select.ENDC}"
@@ -85,7 +86,7 @@ if __name__ == '__main__':
 
                 except Exception as Err:
                     print(Err)
-                    pass
+                    break
 
         # 👇️ end of time measure
         time_end = time.time()
@@ -96,5 +97,4 @@ if __name__ == '__main__':
         print(
             f"Totally processed: {len(image_list)} images, completed within: {round(time_end - time_start, 2)} seconds{Color.select.ENDC}")
 
-    # 👇️ once finished exit.
     exit()

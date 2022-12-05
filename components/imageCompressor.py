@@ -1,6 +1,8 @@
 #!/usr/bin/python
-import gc
 from PIL import Image
+from pillow_heif import register_heif_opener
+
+register_heif_opener()  # adding heic, heif support
 
 
 # 👇️ compressing and resizing an image based on function parameters.

@@ -1,3 +1,4 @@
 Pillow~=9.3.0
 tqdm~=4.64.1
 PySimpleGUI~=4.60.4
+pillow-heif~=0.8.0
