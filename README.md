@@ -10,7 +10,6 @@
 3. Clone this repository: ```git clone https://github.com/georgekhananaev/py-image-compressor.git```
 4. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/), cd into main folder and type: ```pip install -r requirements.txt```
 
-
 ### Command line usage:
 
 ```
@@ -18,19 +17,24 @@ python main.py -l <Your Location> -d <Your Destination> -f <File Format> -w <Max
 ```
 
 Options: 
-* -l = location
-* -d = destination
-* -w = max width
-* -q = quality 
-* -f = format (supported formats: webp, jpeg, png, gif, tiff) for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html).
-* -r = (optional), won't keep new images if become larger size. Usage: `-r y` (y for yes, no is default)
+
+| Command        | Meaning     | Details                                                                                                                                                                   | Usage example                |
+|----------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|
+| **-l**  (required) | location    | your images path                                                                                                                                                          | `-l "C:/Photos 11 Pro Max/"` |
+| **-d**  (required) | destination | destination path                                                                                                                                                          | `-d "C:/Compressed/"`        |
+| **-w**  (required) | max width   | if larger resolution <br/>will be set to max                                                                                                                              | `-w 1920`                    |
+| **-q** (required)  | quality     | images quality by percentage.<br/>lower quality to save more space                                                                                                        | `-q 80`                      |
+| **-f**  (required) | format      | format (supported formats: webp, jpeg, png, gif, tiff) <br/>for more check[ PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). | `-f jpeg`                    |
+| **-r** (optional)  | remove      | remove images from destination path, <br/>if compression is worst than original file.                                                                                     | `-r y`                       |
+
+_Import: for -l and -d, use quotation marks if have spaces._
 
 **Example:**
 
 COMMAND:
 
 ```
-python main.py -l D:/Programming/React/resume-website/ -d ./data/out/ -f webp -w 500 -q 100
+python main.py -l "D:/Programming/React/resume-website/" -d "./data/out/" -f webp -w 500 -q 100
 ```
 
 OUTPUT:
