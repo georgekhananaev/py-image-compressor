@@ -35,9 +35,9 @@ OUTPUT:
 ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/screenshot.jpg?raw=true)
 
 ## Updates:
-**04/12/2022 👇️**
-> Added .heif, heic support, now you can convert photos from your iPhone too.
-> Updated requirements.txt
+**05/12/2022 👇️**
+> 1. Added .heif, heic support, now you can convert photos from your iPhone too.
+> 2. Updated requirements.txt, added for PySimpleGUI(future implementations), pillow-heif
 
 **04/12/2022 👇️**
 > 1. Added multicore image processing, now this is nearly 10 times faster.
