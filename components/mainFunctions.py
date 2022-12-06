@@ -37,18 +37,13 @@ def get_percentage_difference(num_a, num_b):
 
 
 # 👇️ editing single image
-def start_command(image: str, original_folder: str, output_folder: str, dformat: str, max_width: int, quality: int):
-    filedir_with_extension = image
-    before, sep, after = image.partition(original_folder)
+def start_command(**kwargs):
+    before, sep, after = kwargs['source_image'].partition(kwargs['img_path'])
     try:
-        create_folder(output_folder + os.path.dirname(after))
+        create_folder(kwargs['img_destination'] + os.path.dirname(after))
     except Exception as Err:
         # 👇️ this fix a problem which skips files, when if condition fails to detect a folder. it tries to recreate it due to multicore processing.
         _ = Err
         pass
-
-    final_file_path = output_folder + after.replace(os.path.splitext(after)[1], '') + f".{dformat}"
-
-    iC.compress_resize_image(filedir_with_extension, final_file_path, dformat, max_width=max_width, quality=quality)
-
-    return image
+    new_file_path = kwargs['img_destination'] + after.replace(os.path.splitext(after)[1], '') + f".{kwargs['set_format']}"
+    iC.compress_resize_image(image_location=kwargs['source_image'], image_destination=new_file_path, set_format=kwargs['set_format'], max_width=kwargs['max_width'], quality=kwargs['quality'])

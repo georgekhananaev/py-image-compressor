@@ -28,12 +28,15 @@ if __name__ == '__main__':
 
     # 👇️ passing commands to command line
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', type=str, required=True, help='''set your location path example: -l "C:/original_images/"''')  # images locations
-    parser.add_argument('-d', type=str, required=True, help='''set your destination path -d "C:/new_images/"''')  # images destination
+    parser.add_argument('-l', type=str, required=True,
+                        help='''set your location path example: -l "C:/original_images/"''')  # images locations
+    parser.add_argument('-d', type=str, required=True,
+                        help='''set your destination path -d "C:/new_images/"''')  # images destination
     parser.add_argument('-f', type=str, required=True, help="format example: -f webp")  # images format
     parser.add_argument('-w', type=int, required=True, help="max width, example: -w 1920")  # images max width
     parser.add_argument('-q', type=int, required=True, help="quality, example: -q 90")  # images quality
-    parser.add_argument('-r', type=str, help="this is optional, if you want to remove worst compressions compared to original usage: -r y")  # remove larger files y/n
+    parser.add_argument('-r', type=str,
+                        help="this is optional, if you want to remove worst compressions compared to original usage: -r y")  # remove larger files y/n
     args = parser.parse_args()
 
     # 👇️ begging of time measure
@@ -45,7 +48,9 @@ if __name__ == '__main__':
     # 👇️ starting multicore image processing loop
     with concurrent.futures.ProcessPoolExecutor(max_workers=n_cores) as executor:
         # Start the load operations and mark each future with its URL
-        future_to_image = {executor.submit(mF.start_command, image, args.l, args.d, dformat=args.f, max_width=args.w, quality=args.q): image for image in image_list}
+        future_to_image = {
+            executor.submit(mF.start_command, source_image=image, img_path=args.l, img_destination=args.d,
+                            set_format=args.f, max_width=args.w, quality=args.q): image for image in image_list}
 
         # 👇️ returning output from pool
         for future in concurrent.futures.as_completed(future_to_image):
