@@ -44,7 +44,8 @@ OUTPUT:
 
 ## Updates:
 **06/12/2022 👇️**
-> 1. Added default values for -d, -f, -q -f, is no longer required fields. You can execute the code simply by typing: `python main.py -l "C:/Your Folder/"`, _default values is jpeg format, quality 80%, max width 1080p, destination /data/output/_
+> 1. Added default values for -d, -f, -q -f, is no longer required fields. You can execute the code simply by typing: `python main.py -l "C:/Your Folder/"`, _default values is: jpeg format, quality 80%, max width 1080p, destination /data/output/_
+> 2. Simplified the code with *args, **kwargs
 
 **05/12/2022 👇️**
 > 1. Added .heif, heic support, now you can convert photos from your iPhone too.
