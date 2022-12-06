@@ -10,12 +10,11 @@
 # 888         "Y88888        888       888  "Y8888   "Y88888 888 "Y888888         "Y8888P"   "Y88P"  888  888  888 88888P"  888     "Y8888   88888P'  88888P'  "Y88P"  888
 #                 888                                                                                              888
 #            Y8b d88P                                                                                              888
-#             "Y88P"                                                                                               888                                                                           /____/
+#             "Y88P"                                                                                               888
 #
 # github: https://github.com/georgekhananaev/py-image-compressor
 
-from components import mainFunctions as mF, localColors as Color
-from components import mainClasses as mC
+from components import mainFunctions as mF, localColors as Color, mainClasses as mC
 import concurrent.futures
 import argparse
 import time
