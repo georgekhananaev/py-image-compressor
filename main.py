@@ -15,6 +15,7 @@
 # github: https://github.com/georgekhananaev/py-image-compressor
 
 from components import mainFunctions as mF, localColors as Color
+from components import mainClasses as mC
 import concurrent.futures
 import argparse
 import time
@@ -30,14 +31,20 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True,
                         help='''set your location path example: -l "C:/original_images/"''')  # images locations
-    parser.add_argument('-d', type=str, required=True,
-                        help='''set your destination path -d "C:/new_images/"''')  # images destination
-    parser.add_argument('-f', type=str, required=True, help="format example: -f webp")  # images format
-    parser.add_argument('-w', type=int, required=True, help="max width, example: -w 1920")  # images max width
-    parser.add_argument('-q', type=int, required=True, help="quality, example: -q 90")  # images quality
-    parser.add_argument('-r', type=str,
+    parser.add_argument('-d', type=str, required=False,
+                        help='''set your destination path example: -d "C:/new_images/"''')  # images destination
+    parser.add_argument('-f', type=str, required=False, help="format example: -f webp")  # images format
+    parser.add_argument('-w', type=int, required=False, help="max width, example: -w 1920")  # images max width
+    parser.add_argument('-q', type=int, required=False, help="quality, example: -q 90")  # images quality
+    parser.add_argument('-r', type=str, required=False,
                         help="this is optional, if you want to remove worst compressions compared to original usage: -r y")  # remove larger files y/n
     args = parser.parse_args()
+
+    # default values, if none or haven't set.
+    default_max_width = mC.set_default_values(1920, args.w)
+    default_quality = mC.set_default_values(80, args.q)
+    default_format = mC.set_default_values("jpeg", args.f)
+    default_destination = mC.set_default_values("./data/output/", args.d)
 
     # 👇️ begging of time measure
     time_start = time.time()
@@ -49,8 +56,8 @@ if __name__ == '__main__':
     with concurrent.futures.ProcessPoolExecutor(max_workers=n_cores) as executor:
         # Start the load operations and mark each future with its URL
         future_to_image = {
-            executor.submit(mF.start_command, source_image=image, img_path=args.l, img_destination=args.d,
-                            set_format=args.f, max_width=args.w, quality=args.q): image for image in image_list}
+            executor.submit(mF.start_command, source_image=image, img_path=args.l, img_destination=default_destination.set,
+                            set_format=default_format.set, max_width=default_max_width.set, quality=default_quality.set): image for image in image_list}
 
         # 👇️ returning output from pool
         for future in concurrent.futures.as_completed(future_to_image):
@@ -64,7 +71,7 @@ if __name__ == '__main__':
                 try:
                     file = os.path.basename(image)  # original image file name
                     before, sep, after = image.partition(args.l)  # remove location from image if you use after.
-                    new_img_location = os.path.splitext(args.d + after)[0] + f".{args.f}"  # new image full Path
+                    new_img_location = os.path.splitext(default_destination.set + after)[0] + f".{default_format.set}"  # new image full Path
 
                     # 👇️ text for print
                     image_size_is = f"Image {os.path.basename(image)} size is: {round(os.path.getsize(image) / 1024, 2)}KB, new size: {round(os.path.getsize(new_img_location) / 1024, 2)}KB"
@@ -94,8 +101,8 @@ if __name__ == '__main__':
         time_end = time.time()
 
         # 👇️ final print
-        print(f'{Color.select.BOLD}{Color.select.HEADER}Images saved to: {args.d}')
-        print(f'{mF.folder_size(args.d)}')
+        print(f'{Color.select.BOLD}{Color.select.HEADER}Images saved to: {default_destination.set}')
+        print(f'{mF.folder_size(default_destination.set)}')
         print(
             f"Totally processed: {len(image_list)} images, completed within: {round(time_end - time_start, 2)} seconds{Color.select.ENDC}")
 

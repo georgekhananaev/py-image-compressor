@@ -16,12 +16,12 @@
 | Command |  Weight  |   Meaning   | Details                                                                                                                                                                                                                 |        Usage example         |
 |:-------:|:--------:|:-----------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------:|
 | **-l**  | required |  location   | your images path, where your original images located.                                                                                                                                                                   |  `-l "C:/Original Images/"`  |
-| **-d**  | required | destination | your destination path, compressed images will be saved here                                                                                                                                                             | `-d "C:/Compressed Images/"` |
-| **-w**  | required |  max width  | if larger resolution will be set to max width without breaking the image ratio                                                                                                                                          |          `-w 1920`           |
-| **-q**  | required |   quality   | images quality by percentage.<br/>lower quality to save more space                                                                                                                                                      |           `-q 80`            |
-| **-f**  | required |   format    | supported format ".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp", ".heic", ".heif" <br/>for more check [PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). |          `-f jpeg`           |
+| **-d**  | optional | destination | your destination path, compressed images will be saved here                                                                                                                                                             | `-d "C:/Compressed Images/"` |
+| **-w**  | optional |  max width  | if larger resolution will be set to max width without breaking the image ratio                                                                                                                                          |          `-w 1920`           |
+| **-q**  | optional |   quality   | images quality by percentage.<br/>lower quality to save more space                                                                                                                                                      |           `-q 80`            |
+| **-f**  | optional |   format    | supported format ".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp", ".heic", ".heif" <br/>for more check [PIL Documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html). |          `-f jpeg`           |
 | **-r**  | optional |   remove    | remove images from destination path, <br/>if compression is worst than original file.                                                                                                                                   |            `-r y`            |
-| **-h**  | optional |    help     | if you forgot what command you want to use can write python main.py --help                                                                                                                                              |        `-h or --help`        |
+| **-h**  |    -     |    help     | if you forgot what command you want to use can write python main.py --help                                                                                                                                              |        `-h or --help`        |
 
 
 _Import: for -l and -d, use quotation marks if have spaces._
@@ -43,6 +43,9 @@ OUTPUT:
 ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/screenshot.jpg?raw=true)
 
 ## Updates:
+**06/12/2022 👇️**
+> 1. Added default values for -d, -f, -q -f, is no longer required fields. You can execute the code simply by typing: `python main.py -l "C:/Your Folder/"`, _default values is jpeg format, quality 80%, max width 1080p, destination /data/output/_
+
 **05/12/2022 👇️**
 > 1. Added .heif, heic support, now you can convert photos from your iPhone too.
 > 2. Updated requirements.txt, added PySimpleGUI(for future implementations), pillow-heif
