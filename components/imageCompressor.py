@@ -7,7 +7,7 @@ register_heif_opener()  # adding heic, heif support
 
 # image, args.l, args.d, args.f, args.w, quality=args.q
 # 👇️ compressing and resizing an image based on function parameters.
-def compress_resize_image(**kwargs):
+def compress_resize_image(**kwargs) -> None:
     try:
         with Image.open(kwargs['image_location']) as im:
             im = im.convert('RGB')

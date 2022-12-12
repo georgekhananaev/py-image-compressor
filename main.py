@@ -23,8 +23,13 @@ import os
 # 👇️ measuring number of cores in your machine. Will utilize all of them. you can set cores manually such as n_cores = 4
 n_cores = os.cpu_count()
 
+
+
 # 👇️ starting everything
 if __name__ == '__main__':
+
+    # getting default configurations
+    config = mF.setConfigurations.get_resources()
 
     # 👇️ passing commands to command line
     parser = argparse.ArgumentParser()
@@ -39,11 +44,11 @@ if __name__ == '__main__':
                         help="this is optional, if you want to remove worst compressions compared to original usage: -r y")  # remove larger files y/n
     args = parser.parse_args()
 
-    # default values, if none or haven't set.
-    default_max_width = mC.set_default_values(1920, args.w)
-    default_quality = mC.set_default_values(80, args.q)
-    default_format = mC.set_default_values("jpeg", args.f)
-    default_destination = mC.set_default_values("./data/output/", args.d)
+    # setting default values, if none or haven't set.
+    default_max_width = mC.set_default_values(int(config['default_parameters']['max_width']), args.w)
+    default_quality = mC.set_default_values(int(config['default_parameters']['quality']), args.q)
+    default_format = mC.set_default_values(config['default_parameters']['format'], args.f)
+    default_destination = mC.set_default_values(config['default_parameters']['destination'], args.d)
 
     # 👇️ begging of time measure
     time_start = time.time()

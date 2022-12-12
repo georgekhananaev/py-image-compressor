@@ -43,6 +43,10 @@ OUTPUT:
 ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/screenshot.jpg?raw=true)
 
 ## Updates:
+**12/12/2022 👇️**
+> 1. Added 'resources' folder, with configuration.ini file, all program settings will be stored there. This is a preparation for upcoming gui interface with memory.
+> 2. Removed PySimpleGUI from dependencies, will use customtkinter instead for modern looking GUI.
+
 **06/12/2022 👇️**
 > 1. Added default values for -d, -f, -q -f, is no longer required fields. You can execute the code simply by typing: `python main.py -l "C:/Your Folder/"`, _default values is: jpeg format, quality 80%, max width 1080p, destination /data/output/_
 > 2. Simplified the code with *args, **kwargs
@@ -56,7 +60,7 @@ OUTPUT:
 > ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 > 2. Better output for each image, you can see how much size you actually saved.
 > 3. Started working on the GUI interface, will be executable at least on Windows/Ubuntu.
-> 4. new command -r y, to avoid keeping larger compression images
+> 4. New command -r y, to avoid keeping larger compression images
 
 
 ## ---- UNDER DEVELOPMENT ----
