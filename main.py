@@ -14,16 +14,15 @@
 #
 # github: https://github.com/georgekhananaev/py-image-compressor
 
-from components import mainFunctions as mF, localColors as Color, mainClasses as mC
-import concurrent.futures
 import argparse
-import time
+import concurrent.futures
 import os
+import time
+
+from components import mainFunctions as mF, localColors as Color, mainClasses as mC
 
 # 👇️ measuring number of cores in your machine. Will utilize all of them. you can set cores manually such as n_cores = 4
 n_cores = os.cpu_count()
-
-
 
 # 👇️ starting everything
 if __name__ == '__main__':
@@ -60,8 +59,10 @@ if __name__ == '__main__':
     with concurrent.futures.ProcessPoolExecutor(max_workers=n_cores) as executor:
         # Start the load operations and mark each future with its URL
         future_to_image = {
-            executor.submit(mF.start_command, source_image=image, img_path=args.l, img_destination=default_destination.set,
-                            set_format=default_format.set, max_width=default_max_width.set, quality=default_quality.set): image for image in image_list}
+            executor.submit(mF.start_command, source_image=image, img_path=args.l,
+                            img_destination=default_destination.set,
+                            set_format=default_format.set, max_width=default_max_width.set,
+                            quality=default_quality.set): image for image in image_list}
 
         # 👇️ returning output from pool
         for future in concurrent.futures.as_completed(future_to_image):
@@ -75,7 +76,8 @@ if __name__ == '__main__':
                 try:
                     file = os.path.basename(image)  # original image file name
                     before, sep, after = image.partition(args.l)  # remove location from image if you use after.
-                    new_img_location = os.path.splitext(default_destination.set + after)[0] + f".{default_format.set}"  # new image full Path
+                    new_img_location = os.path.splitext(default_destination.set + after)[
+                                           0] + f".{default_format.set}"  # new image full Path
 
                     # 👇️ text for print
                     image_size_is = f"Image {os.path.basename(image)} size is: {round(os.path.getsize(image) / 1024, 2)}KB, new size: {round(os.path.getsize(new_img_location) / 1024, 2)}KB"

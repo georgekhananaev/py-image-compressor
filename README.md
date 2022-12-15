@@ -1,17 +1,18 @@
 # Python Bulk Image Compressor + Resizer
+
 ![animation](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/animation.gif?raw=true)
 
-
 ### Basics
+
 ![Generic badge](https://img.shields.io/badge/Python_3.11-Supported-green.svg)
 
 1. Install [Python 3+](https://www.python.org/downloads/)
 2. Install [git](https://github.com/georgekhananaev/py-image-compressor)
 3. Clone this repository: ```git clone https://github.com/georgekhananaev/py-image-compressor.git```
-4. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/), cd into main folder and type: ```pip install -r requirements.txt```
+4. Install [requirements.txt](https://note.nkmk.me/en/python-pip-install-requirements/), cd into main folder and
+   type: ```pip install -r requirements.txt```
 
 ### Usage:
-
 
 | Command |  Weight  | Default Values |   Meaning   | Details                                                                                                                                                                                                                 |        Usage example         |
 |:-------:|:--------:|:--------------:|:-----------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------:|
@@ -23,7 +24,6 @@
 | **-r**  | optional |       no       |   remove    | remove images from destination path, <br/>if compression is worst than original file.                                                                                                                                   |            `-r y`            |
 | **-h**  |    -     |       -        |    help     | if you forgot what command you want to use can write python main.py --help                                                                                                                                              |        `-h or --help`        |
 
-
 _Import: for -l and -d, use quotation marks if have spaces._
 
 **Examples:**
@@ -31,7 +31,6 @@ _Import: for -l and -d, use quotation marks if have spaces._
 ```
 python main.py -l <Your Location> -d <Your Destination> -f <File Format> -w <Max Width> -q <Max Quality> -r <Remove Larger Files>
 ```
-
 
 COMMAND:
 
@@ -43,12 +42,16 @@ OUTPUT:
 ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/screenshot.jpg?raw=true)
 
 ## Updates:
+
 **12/12/2022 👇️**
-> 1. Added 'resources' folder, with configuration.ini file, all program settings will be stored there. This is a preparation for upcoming gui interface with memory.
+> 1. Added 'resources' folder, with configurations.ini file, all program settings will be stored there. This is a
+     preparation for upcoming gui interface with memory.
 > 2. Removed PySimpleGUI from dependencies, will use customtkinter instead for modern looking GUI.
 
 **06/12/2022 👇️**
-> 1. Added default values for -d, -f, -q -f, is no longer required fields. You can execute the code simply by typing: `python main.py -l "C:/Your Folder/"`, _default values is: jpeg format, quality 80%, max width 1080p, destination /data/output/_
+> 1. Added default values for -d, -f, -q -f, is no longer required fields. You can execute the code simply by
+     typing: `python main.py -l "C:/Your Folder/"`, _default values is: jpeg format, quality 80%, max width 1080p,
+     destination /data/output/_
 > 2. Simplified the code with *args, **kwargs
 
 **05/12/2022 👇️**
@@ -57,14 +60,14 @@ OUTPUT:
 
 **04/12/2022 👇️**
 > 1. Added multicore image processing, now this is nearly 10 times faster.
-> ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
+     > ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 > 2. Better output for each image, you can see how much size you actually saved.
 > 3. Started working on the GUI interface, will be executable at least on Windows/Ubuntu.
 > 4. New command -r y, to avoid keeping larger compression images
 
-
 ## ---- UNDER DEVELOPMENT ----
 
 Discussion is opened. Leave your suggestions. Will be considered seriously!
+
 #### GUI interface, will be added soon...
 

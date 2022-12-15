@@ -1,11 +1,13 @@
 #!/usr/bin/python
-from components import imageCompressor as iC, setConfigurations
-from pathlib import Path
 import os
+from pathlib import Path
+
+from components import imageCompressor as iC, setConfigurations
 
 # 👇️ supported source formats, you can add more formats if supported by PIL here.
 # support_formats = [".png", ".jpeg", ".jpg", ".ppm", ".gif", ".tiff", ".bmp", ".webp", ".heic", ".heif"]
 config = setConfigurations.get_resources()
+
 
 # 👇️ building file list structure with generator
 def build_file_list(your_folder) -> dir:
@@ -45,5 +47,7 @@ def start_command(**kwargs) -> None:
         # 👇️ this fix a problem which skips files, when if condition fails to detect a folder. it tries to recreate it due to multicore processing.
         _ = Err
         pass
-    new_file_path = kwargs['img_destination'] + after.replace(os.path.splitext(after)[1], '') + f".{kwargs['set_format']}"
-    iC.compress_resize_image(image_location=kwargs['source_image'], image_destination=new_file_path, set_format=kwargs['set_format'], max_width=kwargs['max_width'], quality=kwargs['quality'])
+    new_file_path = kwargs['img_destination'] + after.replace(os.path.splitext(after)[1],
+                                                              '') + f".{kwargs['set_format']}"
+    iC.compress_resize_image(image_location=kwargs['source_image'], image_destination=new_file_path,
+                             set_format=kwargs['set_format'], max_width=kwargs['max_width'], quality=kwargs['quality'])
