@@ -43,6 +43,10 @@ OUTPUT:
 
 ## Updates:
 
+**06/04/2023
+> 1. Updated readme.md.
+> 2. Updated requirements.txt with latest versions packages.
+
 **12/12/2022 👇️**
 > 1. Added 'resources' folder, with configurations.ini file, all program settings will be stored there. This is a
      preparation for upcoming gui interface with memory.
@@ -65,9 +69,9 @@ OUTPUT:
 > 3. Started working on the GUI interface, will be executable at least on Windows/Ubuntu.
 > 4. New command -r y, to avoid keeping larger compression images
 
-## ---- UNDER DEVELOPMENT ----
 
-Discussion is opened. Leave your suggestions. Will be considered seriously!
-
-#### GUI interface, will be added soon...
+#### GUI interface will be added if this project will get at least 50 stars...
+- Due to my busy schedule, I will continue the development only if there will be actual demand.
+- If you find bugs, feel free to open a issue.
+- I personally use this script to compress images for react based websites and covert entire folder to webp with a single command.
 
