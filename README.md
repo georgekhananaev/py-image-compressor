@@ -43,10 +43,10 @@ OUTPUT:
 
 ## Updates:
 
-**02/12/2023**
+**02/12/2023 👇**
 > 1. Add a condition in the imageCompressor for automatic RGB and RGBA detection and selection. Thanks to "ZenithVal" for the suggestion.
 
-**06/04/2023**
+**06/04/2023 👇**
 > 1. Updated readme.md.
 > 2. Updated requirements.txt with latest versions packages.
 
