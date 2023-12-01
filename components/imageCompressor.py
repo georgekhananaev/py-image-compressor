@@ -10,7 +10,10 @@ register_heif_opener()  # adding heic, heif support
 def compress_resize_image(**kwargs) -> None:
     try:
         with Image.open(kwargs['image_location']) as im:
-            im = im.convert('RGB')
+            if im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info):
+                im = im.convert("RGBA")
+            else:
+                im = im.convert("RGB")
             if None is kwargs['max_width'] or im.width <= kwargs['max_width']:
                 w, h = int(im.width), int(im.height)
             else:

@@ -43,35 +43,35 @@ OUTPUT:
 
 ## Updates:
 
+** 02/12/2023
+> 1. Add a condition in the imageCompressor for automatic RGB and RGBA detection and selection. Thanks to "ZenithVal" for the suggestion.
+
 **06/04/2023
 > 1. Updated readme.md.
 > 2. Updated requirements.txt with latest versions packages.
 
 **12/12/2022 👇️**
-> 1. Added 'resources' folder, with configurations.ini file, all program settings will be stored there. This is a
-     preparation for upcoming gui interface with memory.
-> 2. Removed PySimpleGUI from dependencies, will use customtkinter instead for modern looking GUI.
+> 1. Added a 'resources' folder containing a configurations.ini file to store all program settings. This change sets the stage for an upcoming GUI interface with memory.
+> 2. Removed PySimpleGUI from dependencies; instead, we will use customtkinter for a modern-looking GUI.
 
 **06/12/2022 👇️**
-> 1. Added default values for -d, -f, -q -f, is no longer required fields. You can execute the code simply by
-     typing: `python main.py -l "C:/Your Folder/"`, _default values is: jpeg format, quality 80%, max width 1080p,
-     destination /data/output/_
-> 2. Simplified the code with *args, **kwargs
+> 1. Default values have been added for the -d, -f, and -q options, making them no longer required fields. You can execute the code simply by typing: python main.py -l "C:/Your Folder/". The default values are as follows: JPEG format, 80% quality, maximum width of 1080p, and the destination folder is set to /data/output/_
+> 2. Simplified the code using *args and **kwargs.
 
 **05/12/2022 👇️**
-> 1. Added .heif, heic support, now you can convert photos from your iPhone too.
-> 2. Updated requirements.txt, added PySimpleGUI(for future implementations), pillow-heif
+> 1. Added support for .heif and .heic formats, so now you can convert photos from your iPhone as well.
+> 2. Updated requirements.txt to include PySimpleGUI (for future implementations) and pillow-heif.
 
 **04/12/2022 👇️**
-> 1. Added multicore image processing, now this is nearly 10 times faster.
+> 1. Improved the image processing output to display the actual amount of size saved for each image.
      > ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 > 2. Better output for each image, you can see how much size you actually saved.
-> 3. Started working on the GUI interface, will be executable at least on Windows/Ubuntu.
-> 4. New command -r y, to avoid keeping larger compression images
+> 3. I have started developing the GUI interface, which will be executable on both Windows and Ubuntu.
+> 4. I've added a new command -r y to prevent retaining larger compressed images.
 
 
-#### GUI interface will be added if this project will get at least 50 stars...
-- Due to my busy schedule, I will continue the development only if there will be actual demand.
-- If you find bugs, feel free to open a issue.
-- I personally use this script to compress images for react based websites and covert entire folder to webp with a single command.
+#### GUI interface will be added if this project receives at least 50 stars...
+- Due to my busy schedule, I will continue development only if there is substantial demand.
+- If you encounter any bugs, please feel free to open an issue.
+- Personally, I use this script to compress images for React-based websites and convert entire folders to WebP format with a single command.
 
