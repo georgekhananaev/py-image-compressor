@@ -1,9 +1,8 @@
-# setup.py
 from setuptools import setup, find_packages
 
 setup(
-    name="py-bulk--image-compressor",
-    version="1.0.0",
+    name="py-bulk-image-compressor",
+    version="1.0.1",
     description="A Python bulk image compressor and resizer",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -21,4 +20,9 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
     ],
+    entry_points={
+        "console_scripts": [
+            "py-bulk-image-compressor=main:main",
+        ],
+    },
 )
