@@ -1,7 +1,5 @@
 # Python Bulk Image Compressor + Resizer
 
-## Overview
-
 This Python script allows you to compress and resize images in bulk. It can optionally preserve EXIF metadata and file timestamps or remove them entirely if the `-rm y` flag is used.
 
 ### Features
