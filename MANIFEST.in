@@ -1,0 +1,6 @@
+# MANIFEST.in
+include LICENSE
+include README.md
+
+# Include the configurations file
+include py_bulk_image_compressor/resources/configurations.ini

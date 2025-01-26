@@ -12,7 +12,9 @@
 #            Y8b d88P                                                                                              888
 #             "Y88P"                                                                                               888
 #
+
 # github: https://github.com/georgekhananaev/py-image-compressor
+
 # Python Bulk Image Compressor CLI Tool
 
 import argparse
@@ -21,7 +23,9 @@ import os
 import time
 from datetime import datetime
 
-from py_bulk_image_compressor.components import mainClasses as mC, mainFunctions as mF, localColors as Color
+from py_bulk_image_compressor.components import mainClasses as mC
+from py_bulk_image_compressor.components import mainFunctions as mF
+from py_bulk_image_compressor.components import localColors as Color
 
 
 def main():
@@ -46,19 +50,31 @@ def main():
     args = parser.parse_args()
 
     # Default values
-    default_max_width = mC.set_default_values(int(config['default_parameters']['max_width']), args.w)
-    default_quality = mC.set_default_values(int(config['default_parameters']['quality']), args.q)
-    default_format = mC.set_default_values(config['default_parameters']['format'], args.f)
-    default_destination = mC.set_default_values(config['default_parameters']['destination'], args.d)
+    default_max_width = mC.set_default_values(
+        int(config['default_parameters']['max_width']),
+        args.w
+    )
+    default_quality = mC.set_default_values(
+        int(config['default_parameters']['quality']),
+        args.q
+    )
+    default_format = mC.set_default_values(
+        config['default_parameters']['format'],
+        args.f
+    )
+    default_destination = mC.set_default_values(
+        config['default_parameters']['destination'],
+        args.d
+    )
 
     remove_metadata = (args.rm and args.rm.lower() == 'y')
 
     start_time = time.time()
 
-    # Build list
+    # Build list of images to process
     image_list = [f for f in mF.build_file_list(args.l)]
 
-    # Multi-core
+    # Multi-core processing
     with concurrent.futures.ProcessPoolExecutor(max_workers=n_cores) as executor:
         future_to_image = {
             executor.submit(
@@ -117,8 +133,10 @@ def main():
                     print(output_msg)
 
                     # Log success
-                    success_msg = f"[{datetime.now()}] SUCCESS: {image} -> {new_img}, " \
-                                  f"Orig: {orig_kb}KB, New: {new_kb}KB, Diff: {size_diff}%\n"
+                    success_msg = (
+                        f"[{datetime.now()}] SUCCESS: {image} -> {new_img}, "
+                        f"Orig: {orig_kb}KB, New: {new_kb}KB, Diff: {size_diff}%\n"
+                    )
                     mF.log_message(config, "success", success_msg)
 
                 except Exception as err:

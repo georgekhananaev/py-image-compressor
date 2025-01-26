@@ -12,7 +12,7 @@ config = setConfigurations.get_resources()
 LOG_FILE = "logs.txt"
 
 
-def build_file_list(your_folder) -> dir:
+def build_file_list(your_folder):
     """
     Builds a generator of files from 'your_folder' that match any of the
     supported formats in 'configurations.ini'.
@@ -42,7 +42,8 @@ def folder_size(your_folder) -> str:
 
 def get_percentage_difference(num_a, num_b) -> float:
     """
-    Positive if compressed is smaller, negative if compressed is larger.
+    Returns positive if the compressed size is smaller,
+    negative if the new size is larger.
     """
     if num_b == 0:
         return 0.0
@@ -63,7 +64,7 @@ def start_command(**kwargs) -> None:
 
     try:
         create_folder(kwargs['img_destination'] + os.path.dirname(after))
-    except Exception: # noqa
+    except Exception:
         pass
 
     new_file_path = (
@@ -95,15 +96,12 @@ def start_command(**kwargs) -> None:
                 )
 
 
-def log_message(config, log_type: str, message: str): # noqa
+def log_message(config, log_type: str, message: str):
     """
     Logs a message if the corresponding log_<type> is True in config.
     The log types are "success", "warning", "error".
     """
-    # read booleans from config
     max_rows = int(config['logs']['max_rows'])
-
-    # For safety, using getboolean
     log_success = config['logs'].getboolean('log_success')
     log_errors = config['logs'].getboolean('log_errors')
     log_warnings = config['logs'].getboolean('log_warnings')
