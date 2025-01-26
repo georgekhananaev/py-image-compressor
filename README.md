@@ -72,6 +72,11 @@ py-bulk-image-compressor -h
        -d "path/to/output" -rm y -r y
    ```
 
+Logs are saved to logs.txt in the current cmd/terminal working directory. Installation & Usage screenshot below:
+
+![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/usage_example_pypi.png?raw=true)
+
+
 ### Command-Line Options
 
 | Option | Required | Default Value       | Description                                                            |
