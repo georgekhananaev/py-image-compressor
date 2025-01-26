@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="py-bulk-image-compressor",
-    version="1.0.4",
+    version="1.0.5",
     description="A Python bulk image compressor and resizer",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -22,7 +22,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "py-bulk-image-compressor=py_bulk_image_compressor.main",
+            "py-bulk-image-compressor=py_bulk_image_compressor.main:main",
         ],
     },
 )
