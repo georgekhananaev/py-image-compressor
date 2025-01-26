@@ -81,6 +81,10 @@ Example output:
 3. Minor speed optimizations for faster compression.
 4. Updated `requirements.txt` with the latest package versions.
 5. Added logs, which is exported to logs.txt
+6. Added tests, use 
+    ```shell
+      pytest --maxfail=1 --disable-warnings -v
+    ```
 
 ### **02/12/2023**
 1. Automatic detection and handling of RGB/RGBA channels.
