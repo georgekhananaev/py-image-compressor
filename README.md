@@ -1,28 +1,44 @@
 # Python Bulk Image Compressor + Resizer
 
-This Python script allows you to compress and resize images in bulk. It can optionally preserve EXIF metadata and file timestamps or remove them entirely if the `-rm y` flag is used.
+## Overview
+The Python Bulk Image Compressor + Resizer is a command-line tool that simplifies the process of compressing and resizing images in bulk. This tool is designed to handle large batches of images efficiently, while allowing you to control various aspects of the compression process, such as quality, output format, and metadata preservation.
 
 ### Features
-- **Supports Multiple Formats:**
-  - **Full Metadata Preservation:** JPEG, JPG, TIFF.
-  - **Partial/No Metadata:** PNG, WEBP, BMP, etc., do not reliably store EXIF data.
-- **Metadata Removal:** If `-rm y` is specified, all metadata (e.g., GPS, date/time, camera info) is stripped, and timestamps are reset instead of being copied from the source.
-- **Logging:** Logs each compression operation in a `logs.txt` file. You can configure the maximum row limit for the log file in the `[logs]` section of `configurations.ini`. When the log file exceeds this limit, older rows are removed.
+- **Ease of Use:** Intuitive CLI commands for fast and simple operations.
+- **Customizable:** Configure options like image quality, format, maximum width, and metadata handling.
+- **Metadata Management:** Preserve or strip EXIF data such as GPS location, camera settings, and timestamps.
+- **Supported Formats:** Wide compatibility with popular image formats, including advanced formats like AVIF and HEIF.
+- **Performance:** Built-in multithreading for faster processing of large image batches.
+- **Logs:** Comprehensive logging for operation tracking, configurable via `configurations.ini`.
+- **Extensibility:** Future-ready for GUI development and cloud integration.
 
 ![Animation](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/animation.gif?raw=true)
 
 ---
 
-### Installation
-![Python Version](https://img.shields.io/badge/Python_3.11-Supported-green.svg)
+## Installation
+
+### **Option 1: Install via PyPI**
+
+For a simplified installation process, the package is available on PyPI:
+
+```bash
+pip install py-bulk-image-compressor
+```
+
+> **Note:** Python version **3.10 or higher** is required. (Older versions may work but are not officially supported.)
+
+---
+
+### **Option 2: Manual Installation**
 
 1. Install [Python 3+](https://www.python.org/downloads/).
 2. Install [Git](https://git-scm.com/).
-3. Clone this repository:
+3. Clone the repository:
    ```bash
    git clone https://github.com/georgekhananaev/py-image-compressor.git
    ```
-4. Install dependencies:
+4. Navigate to the project directory and install dependencies:
    ```bash
    cd py-image-compressor
    pip install -r requirements.txt
