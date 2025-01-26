@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# 👇️ simple colors
+# Simple color utility for terminal output
 class select:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'

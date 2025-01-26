@@ -1,9 +1,14 @@
 #!/usr/bin/python
 
-# defining given parameters or default parameters for functions
 class set_default_values:
-    def __init__(self, *args):  # args receives unlimited no. of arguments as an array
+    """
+    Assigns a default value if the provided argument is None.
+    Usage:
+        set_default_values(default, provided)
+    """
+    def __init__(self, *args):
+        # args[0] -> default, args[1] -> provided
         if args[1] is None:
             self.set = args[0]
-        else:  # if variable is none, will instead use default value.
+        else:
             self.set = args[1]

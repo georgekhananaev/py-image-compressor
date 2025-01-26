@@ -18,98 +18,117 @@ import argparse
 import concurrent.futures
 import os
 import time
+from datetime import datetime
 
 from components import mainFunctions as mF, localColors as Color, mainClasses as mC
 
-# 👇️ measuring number of cores in your machine. Will utilize all of them. you can set cores manually such as n_cores = 4
+# Measure number of CPU cores
 n_cores = os.cpu_count()
 
-# 👇️ starting everything
 if __name__ == '__main__':
 
-    # getting default configurations
+    # Load config
     config = mF.setConfigurations.get_resources()
 
-    # 👇️ passing commands to command line
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True,
-                        help='''set your location path example: -l "C:/original_images/"''')  # images locations
+                        help='Set your location path, e.g.: -l "C:/original_images/"')
     parser.add_argument('-d', type=str, required=False,
-                        help='''set your destination path example: -d "C:/new_images/"''')  # images destination
-    parser.add_argument('-f', type=str, required=False, help="format example: -f webp")  # images format
-    parser.add_argument('-w', type=int, required=False, help="max width, example: -w 1920")  # images max width
-    parser.add_argument('-q', type=int, required=False, help="quality, example: -q 90")  # images quality
+                        help='Set your destination path, e.g.: -d "C:/new_images/"')
+    parser.add_argument('-f', type=str, required=False, help="Set image format, e.g.: -f webp")
+    parser.add_argument('-w', type=int, required=False, help="Max width, e.g.: -w 1920")
+    parser.add_argument('-q', type=int, required=False, help="Quality, e.g.: -q 90")
     parser.add_argument('-r', type=str, required=False,
-                        help="this is optional, if you want to remove worst compressions compared to original usage: -r y")  # remove larger files y/n
+                        help="Remove if compressed is worse, e.g.: -r y")
+    parser.add_argument('-rm', type=str, required=False,
+                        help="Remove ALL metadata, e.g.: -rm y")
     args = parser.parse_args()
 
-    # setting default values, if none or haven't set.
+    # Default values
     default_max_width = mC.set_default_values(int(config['default_parameters']['max_width']), args.w)
     default_quality = mC.set_default_values(int(config['default_parameters']['quality']), args.q)
     default_format = mC.set_default_values(config['default_parameters']['format'], args.f)
     default_destination = mC.set_default_values(config['default_parameters']['destination'], args.d)
 
-    # 👇️ begging of time measure
-    time_start = time.time()
+    remove_metadata = (args.rm and args.rm.lower() == 'y')
 
-    # 👇️ building list of files from generator function
-    image_list = [file for file in mF.build_file_list(args.l)]
+    start_time = time.time()
 
-    # 👇️ starting multicore image processing loop
+    # Build list
+    image_list = [f for f in mF.build_file_list(args.l)]
+
+    # Multi-core
     with concurrent.futures.ProcessPoolExecutor(max_workers=n_cores) as executor:
-        # Start the load operations and mark each future with its URL
         future_to_image = {
-            executor.submit(mF.start_command, source_image=image, img_path=args.l,
-                            img_destination=default_destination.set,
-                            set_format=default_format.set, max_width=default_max_width.set,
-                            quality=default_quality.set): image for image in image_list}
+            executor.submit(
+                mF.start_command,
+                source_image=image,
+                img_path=args.l,
+                img_destination=default_destination.set,
+                set_format=default_format.set,
+                max_width=default_max_width.set,
+                quality=default_quality.set,
+                remove_meta=remove_metadata
+            ): image for image in image_list
+        }
 
-        # 👇️ returning output from pool
         for future in concurrent.futures.as_completed(future_to_image):
-
             image = future_to_image[future]
             try:
-                data = future.result()
+                future.result()
             except Exception as exc:
-                print('%r generated an exception: %s' % (image, exc))
+                error_msg = f"[{datetime.now()}] ERROR processing {image}: {exc}\n"
+                mF.log_message(config, "error", error_msg)
+                print(error_msg)
             else:
                 try:
-                    file = os.path.basename(image)  # original image file name
-                    before, sep, after = image.partition(args.l)  # remove location from image if you use after.
-                    new_img_location = os.path.splitext(default_destination.set + after)[
-                                           0] + f".{default_format.set}"  # new image full Path
+                    file_name = os.path.basename(image)
+                    _, _, after = image.partition(args.l)
+                    new_img = os.path.splitext(
+                        default_destination.set + after
+                    )[0] + f".{default_format.set}"
 
-                    # 👇️ text for print
-                    image_size_is = f"Image {os.path.basename(image)} size is: {round(os.path.getsize(image) / 1024, 2)}KB, new size: {round(os.path.getsize(new_img_location) / 1024, 2)}KB"
-                    saved_size = f"Saved: {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))} %"
-                    if mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location)) < 0:
-                        saved_size = f"{Color.select.FAIL}, worst by {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}%{Color.select.ENDC}"
-                        # 👇️ will remove larger files if you selected yes.
-                        try:
-                            if args.r.lower() == "y":
-                                os.remove(new_img_location)
-                                print(
-                                    f"{Color.select.WARNING}The file below: {os.path.basename(new_img_location)} was removed is{Color.select.ENDC}{saved_size}")
-                        except Exception as Err:
-                            _ = Err
-                            pass
+                    # Possibly removed if bigger
+                    if not os.path.exists(new_img):
+                        continue
+
+                    original_size = os.path.getsize(image)
+                    new_size = os.path.getsize(new_img)
+                    orig_kb = round(original_size / 1024, 2)
+                    new_kb = round(new_size / 1024, 2)
+                    size_diff = mF.get_percentage_difference(original_size, new_size)
+
+                    image_size_is = f"Image {file_name} size: {orig_kb}KB, new size: {new_kb}KB"
+                    if size_diff < 0:
+                        # Worse compression
+                        saved_size = f"{Color.select.FAIL}, worse by {size_diff}%{Color.select.ENDC}"
+                        if args.r and args.r.lower() == "y":
+                            # Remove if requested
+                            os.remove(new_img)
+                            warn_msg = f"[{datetime.now()}] WARNING removed bigger file: {new_img} (Diff: {size_diff}%)\n"
+                            print(Color.select.WARNING + warn_msg + Color.select.ENDC)
+                            mF.log_message(config, "warning", warn_msg)
+                            continue
                     else:
-                        saved_size = f"{Color.select.OKBLUE} saved {mF.get_percentage_difference(os.path.getsize(image), os.path.getsize(new_img_location))}%{Color.select.ENDC}"
+                        saved_size = f"{Color.select.OKBLUE} saved {size_diff}%{Color.select.ENDC}"
 
-                    # 👇️ progress print out
-                    print(f'{image_size_is}{saved_size}')
+                    output_msg = f"{image_size_is} {saved_size}"
+                    print(output_msg)
 
-                except Exception as Err:
-                    print(Err)
-                    break
+                    # Log success
+                    success_msg = f"[{datetime.now()}] SUCCESS: {image} -> {new_img}, " \
+                                  f"Orig: {orig_kb}KB, New: {new_kb}KB, Diff: {size_diff}%\n"
+                    mF.log_message(config, "success", success_msg)
 
-        # 👇️ end of time measure
-        time_end = time.time()
+                except Exception as err:
+                    error_msg = f"[{datetime.now()}] ERROR finalizing {image}: {err}\n"
+                    print(error_msg)
+                    mF.log_message(config, "error", error_msg)
 
-        # 👇️ final print
-        print(f'{Color.select.BOLD}{Color.select.HEADER}Images saved to: {default_destination.set}')
-        print(f'{mF.folder_size(default_destination.set)}')
-        print(
-            f"Totally processed: {len(image_list)} images, completed within: {round(time_end - time_start, 2)} seconds{Color.select.ENDC}")
+    end_time = time.time()
 
-    exit()
+    print(f"{Color.select.BOLD}{Color.select.HEADER}Images saved to: {default_destination.set}")
+    print(f"{mF.folder_size(default_destination.set)}")
+    print(
+        f"Processed {len(image_list)} images in {round(end_time - start_time, 2)} seconds{Color.select.ENDC}"
+    )
