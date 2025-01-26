@@ -1,7 +1,8 @@
 import os
 import pytest
 from PIL import Image
-from components import imageCompressor as ic
+from py_bulk_image_compressor.components import imageCompressor as ic
+
 
 @pytest.mark.parametrize("img_format", ["jpeg", "png", "webp"])
 def test_compress_resize_image(tmp_path, img_format):

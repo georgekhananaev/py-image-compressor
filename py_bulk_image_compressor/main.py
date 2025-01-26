@@ -20,7 +20,7 @@ import os
 import time
 from datetime import datetime
 
-from components import mainFunctions as mF, localColors as Color, mainClasses as mC
+from py_bulk_image_compressor.components import mainClasses as mC, mainFunctions as mF, localColors as Color
 
 # Measure number of CPU cores
 n_cores = os.cpu_count()
@@ -28,7 +28,7 @@ n_cores = os.cpu_count()
 if __name__ == '__main__':
 
     # Load config
-    config = mF.setConfigurations.get_resources()
+    config = py_bulk_image_compressor.components.setConfigurations.get_resources()
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True,

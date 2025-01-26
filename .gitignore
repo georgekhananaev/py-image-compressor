@@ -1,7 +1,27 @@
-/components/__pycache__/*
+# Ignore compiled Python files
+/py_bulk_image_compressor/components/__pycache__/*
+
+# Ignore IDE configuration files (e.g., JetBrains IDEs)
 /.idea
+
+# Ignore debug-related files and folders
 /debug
-/data/*
-!/data/*.py
+
+# Ignore data files but keep Python scripts in the data folder
+/py_bulk_image_compressor/data/*
+!/py_bulk_image_compressor/data/*.py
+
+# Ignore GUI script and log files
 gui.py
 logs.txt
+/py_bulk_image_compressor/logs.txt
+/py_bulk_image_compressor/gui.py
+
+# Ignore build and distribution artifacts
+/dist/
+/build/
+/*.egg-info/
+
+# Ignore virtual environments
+.venv/
+env/

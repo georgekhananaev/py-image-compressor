@@ -1,5 +1,4 @@
-import os
-from components import setConfigurations
+from py_bulk_image_compressor.components import setConfigurations
 
 def test_get_resources():
     """Check if configurations.ini is loaded properly."""

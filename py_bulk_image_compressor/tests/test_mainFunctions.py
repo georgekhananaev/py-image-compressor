@@ -1,7 +1,5 @@
-import os
-import pytest
-from pathlib import Path
-from components import mainFunctions as mf
+from py_bulk_image_compressor.components import mainFunctions as mf
+
 
 def test_create_folder(tmp_path):
     """Test that create_folder() actually creates the given folder."""

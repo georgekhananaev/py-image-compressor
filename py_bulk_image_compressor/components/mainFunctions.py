@@ -4,7 +4,8 @@ import shutil
 from pathlib import Path
 from datetime import datetime
 
-from components import imageCompressor as iC, setConfigurations
+from py_bulk_image_compressor.components import setConfigurations
+from py_bulk_image_compressor.components import imageCompressor as iC
 
 config = setConfigurations.get_resources()
 
