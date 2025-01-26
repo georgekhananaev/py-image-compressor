@@ -1,7 +1,5 @@
 # Python Bulk Image Compressor + Resizer
 
-## Overview
-
 This Python script allows you to compress and resize images in bulk. It can optionally preserve EXIF metadata and file timestamps or remove them entirely if the `-rm y` flag is used.
 
 ### Features
@@ -75,7 +73,7 @@ Example output:
 
 ## Updates
 
-### **26/01/2025**
+#### **26/01/2025**
 1. EXIF metadata is preserved if supported by the output format (e.g., JPEG).
 2. Added support for `.avif` format (requires `pillow-avif-plugin`).
 3. Minor speed optimizations for faster compression.
@@ -86,20 +84,20 @@ Example output:
       pytest --maxfail=1 --disable-warnings -v
     ```
 
-### **02/12/2023**
+#### **02/12/2023**
 1. Automatic detection and handling of RGB/RGBA channels.
 2. Thanks to "ZenithVal" for the suggestion.
 
-### **06/04/2023**
+#### **06/04/2023**
 1. Updated `README.md`.
 2. Updated `requirements.txt` with the latest package versions.
 
-### **12/12/2022**
+#### **12/12/2022**
 1. Introduced a `resources` folder containing `configurations.ini` for storing program settings.
 2. Set up future GUI plans using `customtkinter`.
 3. Removed PySimpleGUI from dependencies.
 
-### **06/12/2022**
+#### **06/12/2022**
 1. Default values added for `-d`, `-f`, and `-q` options. You can run:
    ```bash
    python main.py -l "C:/Your Folder/"
@@ -107,11 +105,11 @@ Example output:
    Defaults: JPEG format, 80% quality, 1920px max width, `/data/output/` as the destination folder.
 2. Simplified the code using `*args` and `**kwargs`.
 
-### **05/12/2022**
+#### **05/12/2022**
 1. Added support for `.heif` and `.heic` formats (e.g., iPhone photos).
 2. Updated `requirements.txt` to include `pillow-heif`.
 
-### **04/12/2022**
+#### **04/12/2022**
 1. Improved the output to display the actual size saved for each image, with full multithreading conversion support.
     > ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 2. Enhanced terminal output for better visualization of size savings.
@@ -120,7 +118,7 @@ Example output:
 
 ---
 
-#### Future Plans
+### Future Plans
 - A GUI interface will be added if this project receives 50+ stars on GitHub.
 - Integration with cloud storage services like AWS S3 and Google Drive for automatic uploads.
 - Support for more advanced image editing options, such as cropping and watermarking.
