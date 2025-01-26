@@ -80,6 +80,7 @@ Example output:
 2. Added support for `.avif` format (requires `pillow-avif-plugin`).
 3. Minor speed optimizations for faster compression.
 4. Updated `requirements.txt` with the latest package versions.
+5. Added logs, which is exported to logs.txt
 
 ### **02/12/2023**
 1. Automatic detection and handling of RGB/RGBA channels.
