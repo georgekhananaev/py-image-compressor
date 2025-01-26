@@ -13,6 +13,7 @@
 #             "Y88P"                                                                                               888
 #
 # github: https://github.com/georgekhananaev/py-image-compressor
+# Python Bulk Image Compressor CLI Tool
 
 import argparse
 import concurrent.futures
@@ -22,13 +23,13 @@ from datetime import datetime
 
 from py_bulk_image_compressor.components import mainClasses as mC, mainFunctions as mF, localColors as Color
 
-# Measure number of CPU cores
-n_cores = os.cpu_count()
 
-if __name__ == '__main__':
+def main():
+    # Measure number of CPU cores
+    n_cores = os.cpu_count()
 
     # Load config
-    config = py_bulk_image_compressor.components.setConfigurations.get_resources()
+    config = mF.setConfigurations.get_resources()
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', type=str, required=True,
@@ -132,3 +133,7 @@ if __name__ == '__main__':
     print(
         f"Processed {len(image_list)} images in {round(end_time - start_time, 2)} seconds{Color.select.ENDC}"
     )
+
+
+if __name__ == "__main__":
+    main()
