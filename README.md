@@ -125,7 +125,7 @@ Example output:
 
 ## Contributing 🤝
 
-We’d love your help to make WebHookX even better! To contribute:
+We’d love your help to make py-image-compressor even better! To contribute:
 
 1. Fork the repository.
 2. Create a new branch for your feature: `git checkout -b feature-name`.
@@ -137,7 +137,7 @@ We’d love your help to make WebHookX even better! To contribute:
 
 ## License
 
-WebHookX is licensed under the MIT License. See the `LICENSE` file for details.
+py-image-compressor is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
 
