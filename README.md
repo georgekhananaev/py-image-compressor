@@ -5,7 +5,7 @@
 
 **py-bulk-image-compressor** is a user-friendly CLI tool for compressing and resizing images in bulk. It offers extensive options for managing image quality, format, and metadata while maintaining fast, efficient performance.
 
-![terminal](https://raw.githubusercontent.com/georgekhananaev/py-image-compressor/main/screenshots/usage_example_pypi.png)
+![terminal](https://raw.githubusercontent.com/georgekhananaev/py-image-compressor/main/screenshots/multicore.gif)
 
 ### Key Features
 
@@ -185,6 +185,4 @@ Your support helps me continue to create and maintain useful projects.
 2. Enhanced terminal output for better visualization of size savings.
 3. Began GUI development for Windows and Ubuntu.
 4. Added `-r y` to skip retaining larger compressed images.
-
----
 
