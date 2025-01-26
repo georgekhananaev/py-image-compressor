@@ -107,7 +107,8 @@ Example output:
 2. Updated `requirements.txt` to include `pillow-heif`.
 
 ### **04/12/2022**
-1. Improved output to display the actual size saved for each image.
+1. Improved the output to display the actual size saved for each image, with full multithreading conversion support.
+    > ![terminal](https://github.com/georgekhananaev/py-image-compressor/blob/main/screenshots/multicore.gif?raw=true)
 2. Enhanced terminal output for better visualization of size savings.
 3. Began GUI development for Windows and Ubuntu.
 4. Added `-r y` to skip retaining larger compressed images.
