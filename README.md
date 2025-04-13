@@ -134,6 +134,12 @@ Your support helps me continue to create and maintain useful projects.
 
 ## Updates
 
+#### **13/04/2025**
+1. Added JPEG normalization step to ensure consistent color‑space conversion and correct chroma placement.  
+2. Upgraded compressor to use progressive encoding, optimized Huffman tables, and 4:2:0 subsampling by default for smaller output sizes.  
+3. Added official support for Python 3.13.x.
+
+
 #### **27/01/2025**
 1. Deployed to pypi, **installation**:
     ```shell

@@ -4,8 +4,14 @@ import shutil
 from pathlib import Path
 from datetime import datetime
 
-from py_bulk_image_compressor.components import setConfigurations
-from py_bulk_image_compressor.components import imageCompressor as iC
+try:
+    # Try importing from the installed package (pip)
+    from py_bulk_image_compressor.components import setConfigurations
+    from py_bulk_image_compressor.components import imageCompressor as iC
+except ImportError:
+    # Fallback to local imports
+    from components import setConfigurations # noqa
+    from components import imageCompressor as iC  # noqa
 
 config = setConfigurations.get_resources()
 
@@ -59,18 +65,23 @@ def start_command(**kwargs) -> None:
     2) Compresses/resizes.
     3) Copies timestamps (unless remove_meta == True).
     """
+    kwargs['set_format_obj'] = kwargs.get('set_format_obj', None)
     src_image = kwargs['source_image']
     before, sep, after = src_image.partition(kwargs['img_path'])
 
     try:
         create_folder(kwargs['img_destination'] + os.path.dirname(after))
-    except Exception:
+    except Exception: # noqa
         pass
 
+    # Use user-specified format for extension if available, else normalized format
+    extension_format = kwargs['set_format']
+    if kwargs['set_format_obj'] and hasattr(kwargs['set_format_obj'], 'user_specified') and kwargs['set_format_obj'].user_specified:
+        extension_format = kwargs['set_format_obj'].user_specified
     new_file_path = (
         kwargs['img_destination']
         + after.replace(os.path.splitext(after)[1], '')
-        + f".{kwargs['set_format']}"
+        + f".{extension_format}"
     )
 
     # Compress
@@ -95,8 +106,7 @@ def start_command(**kwargs) -> None:
                     f"[{datetime.now()}] ERROR copying timestamps {new_file_path}: {e}\n"
                 )
 
-
-def log_message(config, log_type: str, message: str):
+def log_message(config, log_type: str, message: str): # noqa
     """
     Logs a message if the corresponding log_<type> is True in config.
     The log types are "success", "warning", "error".

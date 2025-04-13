@@ -4,3 +4,5 @@ pillow-heif~=0.21.0
 pillow-avif-plugin~=1.4.6
 pytest~=8.3.4
 pillow_heif~=0.21.0
+setuptools~=75.8.0
+pyvips~=2.2.3

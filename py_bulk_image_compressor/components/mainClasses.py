@@ -12,3 +12,5 @@ class set_default_values:
             self.set = args[0]
         else:
             self.set = args[1]
+        # Allow additional attributes like user_specified
+        self.user_specified = None

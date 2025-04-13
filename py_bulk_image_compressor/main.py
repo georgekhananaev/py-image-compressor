@@ -23,9 +23,16 @@ import os
 import time
 from datetime import datetime
 
-from py_bulk_image_compressor.components import mainClasses as mC
-from py_bulk_image_compressor.components import mainFunctions as mF
-from py_bulk_image_compressor.components import localColors as Color
+try:
+    # Try importing from the installed package (pip)
+    from py_bulk_image_compressor.components import mainClasses as mC
+    from py_bulk_image_compressor.components import mainFunctions as mF
+    from py_bulk_image_compressor.components import localColors as Color
+except ImportError:
+    # Fallback to local imports
+    from components import mainClasses as mC
+    from components import mainFunctions as mF
+    from components import localColors as Color
 
 
 def main():
@@ -58,10 +65,15 @@ def main():
         int(config['default_parameters']['quality']),
         args.q
     )
+    # Normalize format: map 'jpg' to 'jpeg' for processing, preserve user input for extension
+    user_format = args.f if args.f else config['default_parameters']['format']
+    normalized_format = 'jpeg' if user_format.lower() == 'jpg' else user_format.lower()
     default_format = mC.set_default_values(
         config['default_parameters']['format'],
-        args.f
+        normalized_format
     )
+    # Store the user-specified format for extension purposes
+    default_format.user_specified = user_format.lower()  # e.g., 'jpg' or 'jpeg'
     default_destination = mC.set_default_values(
         config['default_parameters']['destination'],
         args.d
@@ -83,6 +95,7 @@ def main():
                 img_path=args.l,
                 img_destination=default_destination.set,
                 set_format=default_format.set,
+                set_format_obj=default_format,  # type: mC.set_default_values # noqa
                 max_width=default_max_width.set,
                 quality=default_quality.set,
                 remove_meta=remove_metadata
@@ -103,7 +116,7 @@ def main():
                     _, _, after = image.partition(args.l)
                     new_img = os.path.splitext(
                         default_destination.set + after
-                    )[0] + f".{default_format.set}"
+                    )[0] + f".{default_format.user_specified or default_format.set}"
 
                     # Possibly removed if bigger
                     if not os.path.exists(new_img):
@@ -151,7 +164,6 @@ def main():
     print(
         f"Processed {len(image_list)} images in {round(end_time - start_time, 2)} seconds{Color.select.ENDC}"
     )
-
 
 if __name__ == "__main__":
     main()
