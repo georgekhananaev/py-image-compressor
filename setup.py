@@ -11,9 +11,9 @@ setup(
     url="https://github.com/georgekhananaev/py-image-compressor",
     packages=find_packages(),  # Finds "py_bulk_image_compressor" + subpackages
     install_requires=[
-        "Pillow>=11.1.0",
+        "Pillow>=13.0.0",
         "tqdm>=4.67.1",
-        "pillow-heif>=0.21.0",
+        "pillow-heif>=1.3.0",
         "pillow-avif-plugin>=1.4.6",
     ],
     include_package_data=True,  # Important to include configurations.ini
