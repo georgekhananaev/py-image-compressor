@@ -134,6 +134,11 @@ Your support helps me continue to create and maintain useful projects.
 
 ## Updates
 
+#### **10/11/2026**
+1. Security update: now requires Pillow 13 and pillow-heif 1.3, which fix a long list of known vulnerabilities in image parsing. Upgrade with `pip install -U py-bulk-image-compressor`.
+2. Releases are now published to PyPI from GitHub releases.
+
+
 #### **13/04/2025**
 1. Added JPEG normalization step to ensure consistent color‑space conversion and correct chroma placement.  
 2. Upgraded compressor to use progressive encoding, optimized Huffman tables, and 4:2:0 subsampling by default for smaller output sizes.  
