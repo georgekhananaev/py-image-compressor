@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name="py-bulk-image-compressor",
-    version="1.0.8",
+    version="1.0.9",
     description="A Python bulk image compressor and resizer",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     author="George Khananaev",
-    author_email="george.khananaev@gmail.com",
+    author_email="106206490+georgekhananaev@users.noreply.github.com",
     url="https://github.com/georgekhananaev/py-image-compressor",
     packages=find_packages(),  # Finds "py_bulk_image_compressor" + subpackages
     install_requires=[
