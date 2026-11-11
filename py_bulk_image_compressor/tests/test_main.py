@@ -24,3 +24,14 @@ def test_missing_required_args(flag):
     result = subprocess.run(cmd, capture_output=True, text=True)
     assert result.returncode != 0
     assert "error" in result.stderr.lower()
+
+def test_missing_location_dir_errors(tmp_path):
+    """
+    A nonexistent -l location must fail loudly instead of reporting
+    'Processed 0 images' with exit code 0.
+    """
+    missing = tmp_path / "no-such-dir"
+    cmd = [sys.executable, "main.py", "-l", str(missing)]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    assert result.returncode != 0
+    assert "no-such-dir" in result.stderr
