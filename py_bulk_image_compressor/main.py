@@ -56,6 +56,11 @@ def main():
                         help="Remove ALL metadata, e.g.: -rm y")
     args = parser.parse_args()
 
+    # Fail loudly on a missing location instead of silently
+    # reporting 'Processed 0 images' with exit code 0.
+    if not os.path.isdir(args.l):
+        parser.error(f"location not found or not a directory: {args.l}")
+
     # Default values
     default_max_width = mC.set_default_values(
         int(config['default_parameters']['max_width']),
